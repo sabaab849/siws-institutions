@@ -1,0 +1,72 @@
+.story {
+  position: relative;
+  overflow: hidden;
+  /* Borders sit inside the section height, as in Figma */
+  padding-block: calc(var(--section-y) - var(--border-width));
+  border-block: var(--border-width) solid var(--color-border);
+  background-color: var(--color-bg-warm);
+}
+
+/* Soft lavender circles behind the content */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--color-tint-lavender);
+  pointer-events: none;
+}
+
+.blobTopLeft {
+  left: -166px;
+  top: -173px;
+  width: 300px;
+  height: 300px;
+}
+
+.blobBottomRight {
+  right: -100px;
+  bottom: -91px;
+  width: 280px;
+  height: 280px;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.lead {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-body);
+}
+
+/* Desktop: two 624px columns with an 80px gap. As in Figma, the pair is 48px
+   wider than the content box, so the paragraph runs into the right gutter. */
+@media (min-width: 1024px) {
+  .inner {
+    gap: var(--space-20);
+  }
+
+  .header {
+    grid-template-columns: 48.75% 48.75%;
+    column-gap: 6.25%;
+  }
+
+  .lead {
+    padding-top: var(--space-2);
+  }
+}

@@ -1,0 +1,162 @@
+.heritage {
+  overflow: hidden;
+  background-color: var(--color-brand);
+  color: var(--color-on-brand-soft);
+}
+
+.inner {
+  padding-top: var(--space-12);
+}
+
+/* Label with the large quote marks laid over it */
+.topRow {
+  position: relative;
+  display: flex;
+  padding-top: var(--space-4);
+}
+
+.label {
+  font-size: var(--text-nano);
+  font-weight: var(--weight-medium);
+  line-height: normal;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.mark {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.markLeft {
+  left: 0;
+  top: 0;
+  width: 46px;
+}
+
+.markRight {
+  left: 41px;
+  top: -3px;
+  width: 45px;
+}
+
+/* Rules and the quote paint above the quote marks, as in Figma */
+.rule {
+  position: relative;
+  height: 1px;
+  background-color: var(--color-on-brand-rule-15);
+}
+
+.topRule {
+  margin-bottom: var(--space-8);
+}
+
+.twoCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-bottom: var(--space-12);
+}
+
+.quote {
+  padding-left: 55px;
+  font-family: var(--font-quote);
+  font-size: var(--text-quote);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+  color: var(--color-on-brand-quote);
+}
+
+.colDivider {
+  display: none;
+}
+
+.translation {
+  padding-left: 55px;
+  font-size: var(--text-lead);
+  line-height: var(--leading-relaxed);
+}
+
+.footerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-5) var(--space-6);
+  font-size: var(--text-nano);
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.faded {
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.pillars,
+.pillars li {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.pillars li + li::before {
+  content: '|';
+  opacity: 0.3;
+}
+
+/* Desktop: quote | rule | translation, 64px gutters */
+@media (min-width: 1024px) {
+  .inner {
+    --gutter: var(--space-16);
+    --container-max: 82rem; /* 1312 */
+  }
+
+  .markLeft {
+    left: -0.5px;
+    width: 91.54px;
+  }
+
+  .markRight {
+    left: 82px;
+    top: -5.5px;
+    width: 90.63px;
+  }
+
+  .twoCol {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+
+  .quote {
+    flex: none;
+    width: 51.83%; /* 680px of 1312px */
+    padding-left: 8.384%; /* 110px of 1312px */
+    /* 56px at 1440px, shrinking with the column below that. */
+    font-size: min(var(--text-quote), calc(4.268vw - 5.46px));
+  }
+
+  .colDivider {
+    display: flex;
+    flex: none;
+    justify-content: center;
+    width: 80px;
+    height: 120px;
+  }
+
+  .colDivider::before {
+    content: '';
+    width: 1px;
+    background-color: var(--color-on-brand-rule-30);
+  }
+
+  .translation {
+    flex: 1;
+    padding-left: var(--space-10);
+  }
+}

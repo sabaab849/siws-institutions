@@ -1,0 +1,74 @@
+.list,
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+.items > li {
+  display: flex;
+}
+
+.heading {
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  line-height: normal;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    opacity var(--duration-fast) var(--ease-standard);
+}
+
+.external {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+
+/* Default: light backgrounds */
+.default,
+.default .items {
+  gap: var(--space-5);
+}
+
+.default .heading {
+  font-size: var(--text-label);
+  color: var(--color-brand);
+}
+
+.default .link {
+  font-size: var(--text-sm);
+  color: var(--color-heading);
+}
+
+.default .link:hover {
+  color: var(--color-brand);
+}
+
+/* Inverse: footer on brand blue */
+.inverse,
+.inverse .items {
+  gap: var(--space-4);
+}
+
+.inverse .heading {
+  font-size: var(--text-micro);
+  color: var(--color-body);
+}
+
+.inverse .link {
+  font-size: var(--text-xs);
+  color: var(--color-on-brand-soft);
+  opacity: 0.8;
+}
+
+.inverse .link:hover {
+  opacity: 1;
+}

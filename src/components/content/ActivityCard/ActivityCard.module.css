@@ -1,0 +1,117 @@
+.card {
+  position: relative;
+}
+
+.media {
+  overflow: hidden;
+  background-color: var(--color-placeholder);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  line-height: normal;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-h5);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading);
+}
+
+.description {
+  font-size: var(--text-xs);
+  color: var(--color-body);
+}
+
+/* Feature: tall image, caption on a white panel at the bottom */
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 360px;
+  padding: var(--space-6);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.feature .media {
+  position: absolute;
+  inset: 0;
+}
+
+.caption {
+  position: relative;
+  padding: var(--space-4);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface);
+}
+
+.feature .title {
+  font-size: var(--text-h4);
+}
+
+/* Stacked: image above text */
+.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stacked .media {
+  height: var(--activity-media-height, 200px); /* sections can set a taller photo */
+  border-radius: var(--radius-sm);
+}
+
+/* Horizontal: bordered card with a thumbnail */
+.horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* Border sits inside the 16px padding, as in Figma */
+  padding: calc(var(--space-4) - var(--border-width));
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.horizontal .media {
+  height: 160px;
+  border-radius: var(--radius-xs);
+}
+
+@media (min-width: 640px) {
+  .feature {
+    height: 440px;
+  }
+
+  .horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .horizontal .media {
+    flex: none;
+    width: 140px;
+    height: 100px;
+  }
+
+  .horizontal .text {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .feature {
+    height: 540px;
+  }
+}

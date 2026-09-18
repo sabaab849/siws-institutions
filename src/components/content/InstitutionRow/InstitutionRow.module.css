@@ -1,0 +1,167 @@
+/*
+ * Phones: the photo sits under the index number like a catalogue plate, so
+ * nothing depends on hover and the name keeps most of the width.
+ */
+.row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 18px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'index content arrow'
+    'thumb content arrow';
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
+  align-items: start;
+  /* The bottom border sits inside the 28px padding, as in Figma */
+  padding-block: var(--space-7) calc(var(--space-7) - var(--border-width));
+  border-bottom: var(--border-width) solid var(--color-border);
+  transition: border-color 350ms var(--ease-standard);
+}
+
+.index {
+  grid-area: index;
+  flex: none;
+  width: 40px;
+  font-family: var(--font-heading);
+  font-size: var(--text-numeral);
+  font-weight: var(--weight-bold);
+  line-height: normal;
+  color: var(--color-brand);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  grid-area: content;
+  gap: var(--space-1-5);
+  min-width: 0;
+  transition: transform 400ms var(--ease-out);
+}
+
+.name {
+  font-size: var(--text-body);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+  transition: color 350ms var(--ease-standard);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  line-height: normal;
+}
+
+.category {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-brand);
+}
+
+.divider {
+  width: var(--border-width);
+  height: 10px;
+  background-color: var(--color-border);
+}
+
+.details {
+  font-size: var(--text-xs);
+  color: var(--color-body);
+}
+
+.thumb {
+  display: block;
+  flex: none;
+  grid-area: thumb;
+  width: 64px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.thumbVisual {
+  transition: transform 600ms var(--ease-out);
+}
+
+.arrow {
+  display: flex;
+  flex: none;
+  grid-area: arrow;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: transform 350ms var(--ease-out);
+}
+
+/* Hover and keyboard focus: the rule firms up and the name turns brand blue */
+.row:is(:hover, :focus-visible) {
+  border-bottom-color: var(--color-rule-quote);
+}
+
+.row:is(:hover, :focus-visible) .name {
+  color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .row:is(:hover, :focus-visible) .content {
+    transform: translateX(4px);
+  }
+
+  .row:is(:hover, :focus-visible) .arrow {
+    transform: translate(4px, -4px);
+  }
+
+  .row:is(:hover, :focus-visible) .thumbVisual {
+    transform: scale(1.03);
+  }
+}
+
+/* Tablets and wider touch screens: the photo sits inline before the arrow */
+@media (min-width: 640px) {
+  .row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .thumb {
+    width: 120px;
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/*
+ * Desktop with a mouse: no row photos. The section's shared hover preview rides
+ * in a lane at the right of the list, and the text stops short of it.
+ */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .thumb {
+    display: none;
+  }
+
+  .content {
+    margin-right: var(--preview-lane, 0px);
+  }
+}
+
+/*
+ * Beside the intro (the section's 84rem layout) that leaves too little width for
+ * category and details on one line, so they stack instead of leaving the
+ * divider hanging at a line end.
+ */
+@media (min-width: 84rem) and (hover: hover) and (pointer: fine) {
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .divider {
+    display: none;
+  }
+}

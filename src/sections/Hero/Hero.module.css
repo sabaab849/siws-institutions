@@ -1,0 +1,99 @@
+.hero {
+  overflow: hidden; /* crops the illustration where it bleeds off the right edge */
+  padding-bottom: var(--section-y);
+}
+
+/* Mobile & tablet: copy first, illustration below. */
+.body {
+  display: grid;
+  gap: var(--space-12);
+  padding-top: var(--space-12);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-7);
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-variation-text);
+}
+
+.title {
+  font-size: clamp(2.25rem, 10.5vw, 4.5rem);
+  font-variation-settings: var(--font-variation-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink);
+}
+
+.intro {
+  max-width: 520px;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.quote {
+  width: 100%;
+  max-width: 520px;
+}
+
+.art {
+  justify-self: center;
+  width: 100%;
+  max-width: 606px;
+}
+
+.illustration {
+  width: 100%;
+  height: auto;
+}
+
+.statsBand {
+  border-top: var(--border-width) solid var(--color-rule-strong);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-6);
+  /* Figma's rule overlays the top padding rather than adding height */
+  padding-top: calc(var(--space-6) - var(--border-width));
+}
+
+/* Desktop: the Figma two-column layout, scaled proportionally below 1440px. */
+@media (min-width: 1024px) {
+  .hero {
+    padding-bottom: var(--space-38);
+  }
+
+  .body {
+    grid-template-columns: 59.375% minmax(0, 1fr); /* 760px of 1280px */
+    column-gap: 5.625%; /* 72px of 1280px */
+    align-items: start;
+    padding-top: var(--space-14);
+  }
+
+  .title {
+    /* 88px at 1440px wide, shrinking with the text column below that. */
+    font-size: min(calc(6.875vw - 11px), var(--text-display));
+  }
+
+  .art {
+    justify-self: start;
+    max-width: none;
+  }
+
+  .illustration {
+    /* 606px inside a 448px column, so it runs past the right edge as in Figma. */
+    width: 135.27%;
+    max-width: none;
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 240px));
+    justify-content: space-between;
+  }
+}

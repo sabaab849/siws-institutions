@@ -1,0 +1,270 @@
+.selector {
+  --milestone-motion: var(--duration-state) var(--ease-out);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* "INSTITUTIONAL MILESTONES ———" */
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.label {
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: normal;
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--color-body);
+}
+
+.labelRule {
+  flex: none;
+  width: 60px;
+  height: 1px;
+  background-color: var(--color-rule-quote);
+}
+
+/* Mobile & tablet: a swipeable row that runs to the screen edges */
+.list {
+  position: relative;
+  display: flex;
+  gap: var(--space-6);
+  margin-inline: calc(-1 * var(--gutter));
+  /* top padding leaves room for the hover lift inside the scroll box */
+  padding: var(--space-2) var(--gutter) var(--space-1);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  display: flex;
+  flex: 0 0 min(15rem, 72%);
+  scroll-snap-align: start;
+}
+
+.milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.milestone:focus-visible {
+  outline-offset: 6px;
+}
+
+.reveal {
+  display: block;
+}
+
+/* Icon on a soft arch that fades out towards the bottom */
+.iconShape {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 96px;
+  transform-origin: 50% 100%;
+  transition: transform var(--milestone-motion);
+}
+
+.iconShape::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 52px 52px 16px 16px;
+  background-color: var(--color-tint-lavender);
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, rgb(0 0 0 / 0.3));
+  mask-image: linear-gradient(to bottom, #000 70%, rgb(0 0 0 / 0.3));
+  transition: background-color var(--milestone-motion);
+}
+
+.icon {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  color: var(--color-brand);
+  opacity: 0.85;
+  transition:
+    color var(--milestone-motion),
+    opacity var(--milestone-motion);
+}
+
+.year {
+  margin-top: var(--space-6);
+  font-family: var(--font-heading);
+  font-size: var(--text-numeral);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-brand-muted);
+  transition: color var(--milestone-motion);
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.description {
+  max-width: 15rem;
+  margin-block: var(--space-2) var(--space-5);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+  transition: color var(--milestone-motion);
+}
+
+/* Short orange underline, pinned to the bottom so it lines up across columns */
+.indicator {
+  width: 40px;
+  height: 2px;
+  margin-top: auto;
+  border-radius: 1px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--milestone-motion);
+}
+
+/* Active milestone */
+.milestone[data-active] .iconShape {
+  transform: scale(1.05);
+}
+
+.milestone[data-active] .iconShape::before {
+  background-color: var(--color-accent-tint);
+}
+
+.milestone[data-active] .icon {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.milestone[data-active] .year {
+  color: var(--color-accent-text);
+}
+
+.milestone[data-active] .description {
+  color: var(--color-body-strong);
+}
+
+.milestone[data-active] .indicator {
+  transform: scaleX(1);
+}
+
+/* Hover */
+@media (hover: hover) and (pointer: fine) {
+  .milestone:hover .year {
+    color: var(--color-brand);
+  }
+
+  .milestone[data-active]:hover .year {
+    color: var(--color-accent-text);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .milestone:hover .iconShape {
+    transform: translateY(-5px) scale(1.04);
+  }
+
+  .milestone[data-active]:hover .iconShape {
+    transform: translateY(-5px) scale(1.06);
+  }
+}
+
+/*
+ * Motion. Icons rise in one after another once the row is in view; the active
+ * icon settles into its larger size as it arrives, and each newly active
+ * description fades up.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .list:not([data-revealed]) .reveal {
+    opacity: 0;
+  }
+
+  .list:not([data-revealed]) .iconShape {
+    transform: none;
+  }
+
+  .list[data-revealed] .reveal {
+    animation: icon-enter var(--duration-enter) var(--ease-out) var(--reveal-delay) backwards;
+  }
+
+  .list[data-revealed] .milestone[data-active] .description {
+    animation: description-enter var(--duration-state) var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconShape,
+  .iconShape::before,
+  .icon,
+  .year,
+  .description,
+  .indicator {
+    transition: none;
+  }
+
+  .milestone[data-active] .iconShape {
+    transform: none;
+  }
+}
+
+@keyframes icon-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes description-enter {
+  from {
+    opacity: 0.35;
+    transform: translateY(6px);
+  }
+}
+
+/* Desktop: all five in one row */
+@media (min-width: 1024px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: var(--space-8);
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .item {
+    flex: none;
+  }
+
+  .year {
+    font-size: var(--text-year);
+  }
+}

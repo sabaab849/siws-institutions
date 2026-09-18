@@ -1,0 +1,38 @@
+.impact {
+  padding-block: var(--section-y-lg);
+  background-color: var(--color-brand);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.stats {
+  display: grid;
+  gap: var(--space-10);
+}
+
+@media (min-width: 640px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-8);
+  }
+}
+
+/* Desktop: four 260px columns spread across 1280px */
+@media (min-width: 1024px) {
+  .inner {
+    gap: var(--space-20);
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .stat {
+    width: 20.3125%;
+  }
+}

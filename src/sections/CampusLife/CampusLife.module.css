@@ -1,0 +1,44 @@
+.campus {
+  padding-block: var(--section-y);
+  background-color: var(--color-surface);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.highlights {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 640px) {
+  .highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: two 624px columns with a 32px gap */
+@media (min-width: 1024px) {
+  .inner {
+    gap: var(--space-14);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}

@@ -1,0 +1,140 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  /* Border sits inside the 24px padding, as in Figma */
+  padding: calc(var(--space-6) - var(--border-width));
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.label {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  letter-spacing: var(--tracking-tag);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-brand);
+}
+
+.badge {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent);
+  font-size: var(--text-nano);
+  font-weight: var(--weight-bold);
+  line-height: normal;
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+.value {
+  font-size: var(--text-stat-lg);
+  font-weight: var(--weight-bold);
+  line-height: 1.1667; /* 56px at 48px */
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+.description {
+  font-size: var(--text-sm);
+  line-height: 1.375rem; /* 22px */
+  color: var(--color-body);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/*
+ * Hover. Transitions only switch on once the entrance has finished, so they
+ * never compete with it.
+ */
+.card[data-state='entered'] {
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.card[data-state='entered'] .badge {
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card[data-state='entered']:hover {
+    border-color: var(--color-border-hover);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card[data-state='entered']:hover {
+    transform: translateY(-3px);
+  }
+
+  .card[data-state='entered']:hover .badge {
+    transform: scale(1.04);
+  }
+}
+
+/*
+ * Entrance: the card rises into place, then its badge settles and a text value
+ * fades up. `backwards` holds the start frame during each delay; once finished,
+ * the resting styles above take over.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .card[data-state='hidden'] {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+
+  .card:not([data-state='hidden']) {
+    animation: card-enter var(--duration-enter) var(--ease-out) var(--reveal-delay) backwards;
+  }
+
+  .card:not([data-state='hidden']) .badge {
+    animation: badge-enter 400ms var(--ease-out) calc(var(--reveal-delay) + 100ms) backwards;
+  }
+
+  .card:not([data-state='hidden']) .valueReveal {
+    animation: value-enter 500ms var(--ease-out) calc(var(--reveal-delay) + 150ms) backwards;
+  }
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+}
+
+@keyframes badge-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes value-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

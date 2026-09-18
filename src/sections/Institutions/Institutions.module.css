@@ -1,0 +1,102 @@
+.institutions {
+  padding-block: var(--section-y);
+  background-color: var(--color-bg);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* #ccc as in Figma */
+.lead {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-faint);
+}
+
+/* Figma draws the top line just above the first row */
+.index {
+  position: relative;
+  margin-top: calc(-1 * var(--border-width));
+}
+
+.list {
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+/* Only mouse users get the hover preview; touch rows carry their own photos */
+.preview {
+  display: none;
+}
+
+/*
+ * Wide screens: editorial column beside the index, about 40 / 60. Narrower
+ * than 84rem (so a 1366px laptop still qualifies), the index would be too
+ * narrow for its text and the preview, so the intro sits above it instead.
+ */
+@media (min-width: 84rem) {
+  .inner {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+    column-gap: var(--space-16);
+  }
+}
+
+/*
+ * The preview rides in a lane at the right of the list, 16px left of the rows'
+ * 18px arrows, centred on the hovered row. Rows keep their text out of the lane
+ * (see InstitutionRow): their 32px gap before the arrow plus the lane leaves
+ * 24px between text and image.
+ */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .index {
+    --preview-w: clamp(240px, 20vw - 32px, 256px); /* 256px at 1440 */
+    --preview-lane: calc(var(--preview-w) + var(--space-2));
+  }
+
+  .preview {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: calc(18px + var(--space-4));
+    z-index: 1;
+    width: var(--preview-w);
+    aspect-ratio: 10 / 7; /* 256 × 180 */
+  }
+}
+
+/* Entrance: the intro rises into place, then the rows follow one by one */
+@media (prefers-reduced-motion: no-preference) {
+  .institutions[data-state='hidden'] :is(.intro, .list > li) {
+    opacity: 0;
+  }
+
+  .institutions[data-state='shown'] .intro {
+    animation: intro-in var(--duration-enter) var(--ease-out) backwards;
+  }
+
+  .institutions[data-state='shown'] .list > li {
+    animation: row-in var(--duration-enter) var(--ease-out) calc(150ms + var(--row) * 90ms) backwards;
+  }
+}
+
+@keyframes intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}

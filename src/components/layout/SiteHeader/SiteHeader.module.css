@@ -1,0 +1,202 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  border-bottom: var(--border-width) solid var(--color-rule);
+}
+
+/*
+ * Frosted glass. The blur lives on a pseudo-element because an element with
+ * backdrop-filter stops its descendants' backdrop-filter (the mobile panel)
+ * from seeing the page behind it.
+ */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: var(--header-h);
+  max-width: calc(var(--header-max) + 2 * var(--header-gutter));
+  margin-inline: auto;
+  padding-inline: var(--header-gutter);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Mobile & tablet: navigation opens as a panel under the bar. */
+.nav {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  top: calc(100% + var(--border-width));
+  padding: var(--space-2) var(--header-gutter) var(--space-6);
+  background-color: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
+  border-bottom: var(--border-width) solid var(--color-rule);
+}
+
+.nav[data-open] {
+  display: block;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+}
+
+.navLink {
+  display: block;
+  padding-block: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-rule);
+  font-size: var(--text-nav);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+  color: var(--color-body-strong);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.navLink:hover {
+  color: var(--color-brand);
+}
+
+.menuSignIn {
+  padding-top: var(--space-6);
+}
+
+.barSignIn {
+  display: none;
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-inline-end: -10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+/* Three-line icon that turns into a cross when the menu is open. */
+.menuIcon,
+.menuIcon::before,
+.menuIcon::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background-color: currentColor;
+  transition:
+    transform var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.menuIcon {
+  position: relative;
+}
+
+.menuIcon::before,
+.menuIcon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.menuIcon::before {
+  transform: translateY(-6px);
+}
+
+.menuIcon::after {
+  transform: translateY(6px);
+}
+
+.menuToggle[aria-expanded='true'] .menuIcon {
+  background-color: transparent;
+}
+
+.menuToggle[aria-expanded='true'] .menuIcon::before {
+  transform: rotate(45deg);
+}
+
+.menuToggle[aria-expanded='true'] .menuIcon::after {
+  transform: rotate(-45deg);
+}
+
+@media (min-width: 640px) {
+  .barSignIn {
+    display: inline-flex;
+  }
+
+  .menuSignIn {
+    display: none;
+  }
+}
+
+/* Desktop: inline navigation, as in Figma. */
+@media (min-width: 1024px) {
+  .nav,
+  .nav[data-open] {
+    display: block;
+    position: static;
+    padding: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 0;
+  }
+
+  .navList {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .navLink {
+    padding-block: 0;
+    border-bottom: 0;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+}
+
+/* Solid background where blur isn't supported or transparency is reduced */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header::before {
+    background-color: var(--color-bg);
+  }
+
+  .nav[data-open] {
+    background-color: var(--color-bg);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .header::before {
+    background-color: var(--color-bg);
+  }
+
+  .nav[data-open] {
+    background-color: var(--color-bg);
+  }
+}

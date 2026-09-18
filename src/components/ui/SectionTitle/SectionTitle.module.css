@@ -1,0 +1,28 @@
+.title {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+}
+
+.lg {
+  font-size: var(--text-h2);
+}
+
+.xl {
+  font-size: var(--text-h2-lg);
+}
+
+.normal {
+  line-height: normal;
+}
+
+.tight {
+  line-height: var(--leading-heading);
+}
+
+.default {
+  color: var(--color-heading);
+}
+
+.inverse {
+  color: var(--color-on-brand);
+}

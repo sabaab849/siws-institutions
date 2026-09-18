@@ -1,0 +1,21 @@
+.tile {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+}
+
+.square {
+  width: 40px;
+  height: 40px;
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-subtle);
+}

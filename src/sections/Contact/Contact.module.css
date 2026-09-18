@@ -1,0 +1,107 @@
+.contact {
+  padding-block: var(--section-y-lg);
+  background-color: var(--color-surface);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.arrow {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.details {
+  display: grid;
+  gap: var(--space-10);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.office {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  line-height: normal;
+}
+
+.officeName {
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+.address {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.reach {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+.reach a {
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.reach a:hover {
+  color: var(--color-brand);
+}
+
+@media (min-width: 640px) {
+  .header {
+    gap: var(--space-6);
+  }
+
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .info {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Desktop: 400px info column and two 280px link columns spread across 1280px */
+@media (min-width: 1024px) {
+  .inner {
+    gap: var(--space-14);
+  }
+
+  .title {
+    white-space: nowrap;
+  }
+
+  .details {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .info {
+    width: 31.25%;
+  }
+
+  .column {
+    width: 21.875%;
+  }
+}

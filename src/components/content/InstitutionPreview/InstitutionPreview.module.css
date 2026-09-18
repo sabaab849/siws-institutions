@@ -1,0 +1,62 @@
+/*
+ * The outer box follows the hovered row; the frame inside fades and rises on
+ * open. No border, shadow or radius, like a print laid on the page.
+ */
+.preview {
+  transform: translateY(var(--y));
+  pointer-events: none;
+}
+
+.preview[data-follow] {
+  transition: transform 450ms var(--ease-out);
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+.preview[data-open] .frame {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+ * The active visual fades in over the previous one, which stays put until it
+ * is covered, so the crossfade never dips to the background.
+ */
+.layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0s 350ms;
+}
+
+.layer[data-active] {
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 350ms var(--ease-out);
+}
+
+/* Reduced motion: the preview jumps between rows and only fades */
+@media (prefers-reduced-motion: reduce) {
+  .preview[data-follow] {
+    transition: none;
+  }
+
+  .frame {
+    transform: none;
+    transition: opacity 150ms linear;
+  }
+
+  .layer[data-active] {
+    transition: opacity 150ms linear;
+  }
+}
