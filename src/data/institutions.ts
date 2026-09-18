@@ -4,9 +4,6 @@ import preSchool from '../assets/photos/institutions/pre-school.webp';
 import primarySchool from '../assets/photos/institutions/primary-school.webp';
 import secondarySchool from '../assets/photos/institutions/secondary-school.webp';
 
-const collegeUrl = 'https://siwscollege.edu.in/';
-const schoolUrl = 'https://siwsschool.edu.in/';
-
 /**
  * Preview for an institution: a real SIWS photo (client's, cropped 3:2), or a
  * typographic tile where no authentic photo exists yet.
@@ -35,7 +32,7 @@ export const institutions = {
       name: 'S.I.W.S. N.R. Swamy College of Commerce & Economics and Smt. Thirumalai College of Science',
       category: 'Degree College',
       details: 'B.Sc. / M.Sc. / B.Com. / M.Com. / Ph.D. · Autonomous · NAAC A Grade',
-      href: collegeUrl,
+      href: 'https://siwscollege.edu.in/',
       visual: { kind: 'photo', src: degreeCollege },
     },
     {
@@ -43,28 +40,28 @@ export const institutions = {
       name: 'S.I.W.S. N.R. Swamy College of Commerce & Economics and Smt. Thirumalai College of Science',
       category: 'Junior College',
       details: 'HSC Commerce & Science · Maharashtra State Board',
-      href: collegeUrl,
+      href: 'https://siwsschool.edu.in/junior-college',
       visual: { kind: 'photo', src: juniorCollege },
     },
     {
       index: '03',
       name: 'S.I.W.S. Secondary School',
       details: 'Secondary Education · K.G. to Class X · SSC Board',
-      href: schoolUrl,
+      href: 'https://siwsschool.edu.in/secondary',
       visual: { kind: 'photo', src: secondarySchool },
     },
     {
       index: '04',
       name: 'S.I.W.S. Primary School',
       details: 'Primary Education · K.G. to Class IV · SSC Board',
-      href: schoolUrl,
+      href: 'https://siwsschool.edu.in/primary',
       visual: { kind: 'photo', src: primarySchool },
     },
     {
       index: '05',
       name: 'S.I.W.S. Pre-School',
       details: 'Early Years · Nursery & Kindergarten · Foundation for Life',
-      href: schoolUrl,
+      href: 'https://siwsschool.edu.in/kindergarten',
       visual: { kind: 'photo', src: preSchool },
     },
   ] satisfies InstitutionContent[],
