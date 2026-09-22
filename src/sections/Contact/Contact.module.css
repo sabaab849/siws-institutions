@@ -1,5 +1,5 @@
 .contact {
-  padding-block: var(--section-y-lg);
+  padding-block: var(--section-y);
   background-color: var(--color-surface);
 }
 
@@ -66,6 +66,15 @@
 
 .reach a:hover {
   color: var(--color-brand);
+}
+
+/* Phones & tablets: email and phone become 44px tap targets on the same line */
+@media (max-width: 1023.98px) {
+  .reach a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
 }
 
 @media (min-width: 640px) {

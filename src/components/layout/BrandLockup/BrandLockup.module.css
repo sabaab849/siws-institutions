@@ -20,9 +20,8 @@
 }
 
 .wordmark {
-  font-family: var(--font-accent);
   font-size: var(--text-wordmark);
-  font-weight: var(--weight-medium);
+  font-weight: var(--weight-semibold);
   line-height: var(--leading-wordmark);
   letter-spacing: var(--tracking-wordmark);
   color: var(--color-heading);

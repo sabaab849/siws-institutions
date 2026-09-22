@@ -1,14 +1,15 @@
 /*
- * Phones: the photo sits under the index number like a catalogue plate, so
- * nothing depends on hover and the name keeps most of the width.
+ * Phones: the photo sits under the index number like a catalogue plate, with
+ * the link arrow tucked into its corner, so nothing depends on hover and the
+ * name keeps the rest of the width.
  */
 .row {
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr) 18px;
+  grid-template-columns: 64px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    'index content arrow'
-    'thumb content arrow';
+    'index content'
+    'thumb content';
   column-gap: var(--space-4);
   row-gap: var(--space-3);
   align-items: start;
@@ -22,7 +23,6 @@
   grid-area: index;
   flex: none;
   width: 40px;
-  font-family: var(--font-heading);
   font-size: var(--text-numeral);
   font-weight: var(--weight-bold);
   line-height: normal;
@@ -90,13 +90,34 @@
 .arrow {
   display: flex;
   flex: none;
-  grid-area: arrow;
   align-items: center;
   align-self: center;
   justify-content: center;
   width: 18px;
   height: 18px;
   transition: transform 350ms var(--ease-out);
+}
+
+/*
+ * Phones: short entries centre their text on the number and photo (long ones
+ * are taller than both, so they stay as they are), and the arrow is a small
+ * white tab in the photo's bottom-right corner.
+ */
+@media (max-width: 639.98px) {
+  .content {
+    align-self: center;
+  }
+
+  .arrow {
+    grid-area: thumb;
+    align-self: start;
+    justify-self: end;
+    width: 20px;
+    height: 20px;
+    /* 48px photo (64px at 4:3) minus the 20px tab */
+    margin-top: 28px;
+    background-color: var(--color-surface);
+  }
 }
 
 /* Hover and keyboard focus: the rule firms up and the name turns brand blue */

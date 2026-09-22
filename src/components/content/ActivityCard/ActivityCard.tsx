@@ -1,6 +1,14 @@
 import { cx } from '../../../utils/cx';
 import { Eyebrow } from '../../ui/Eyebrow/Eyebrow';
+import { Picture, type MobileImage } from '../../ui/Picture/Picture';
 import styles from './ActivityCard.module.css';
+
+/** How wide each layout's photo is shown below 1024px (see ActivityCard.module.css). */
+const MOBILE_SIZES = {
+  feature: '100vw',
+  stacked: '(min-width: 640px) 50vw, 100vw',
+  horizontal: '(min-width: 640px) 140px, 100vw',
+} as const;
 
 type ActivityCardProps = {
   /**
@@ -17,6 +25,8 @@ type ActivityCardProps = {
   imageAlt?: string;
   /** Focal point kept in frame when the photo is cropped (CSS `object-position`). */
   imagePosition?: string;
+  /** Smaller copy of the photo for phones and tablets. */
+  imageMobile?: MobileImage;
   className?: string;
 };
 
@@ -28,6 +38,7 @@ export function ActivityCard({
   image,
   imageAlt = '',
   imagePosition,
+  imageMobile,
   className,
 }: ActivityCardProps) {
   const text = (
@@ -44,9 +55,11 @@ export function ActivityCard({
     <article className={cx(styles.card, styles[layout], className)}>
       <div className={styles.media}>
         {image && (
-          <img
+          <Picture
             className={styles.image}
             src={image}
+            mobile={imageMobile}
+            mobileSizes={MOBILE_SIZES[layout]}
             alt={imageAlt}
             style={{ objectPosition: imagePosition }}
             loading="lazy"

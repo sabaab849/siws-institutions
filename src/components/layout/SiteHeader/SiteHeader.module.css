@@ -7,7 +7,7 @@
 
 /*
  * Frosted glass. The blur lives on a pseudo-element because an element with
- * backdrop-filter stops its descendants' backdrop-filter (the mobile panel)
+ * backdrop-filter stops its descendants' backdrop-filter (the mobile menu)
  * from seeing the page behind it.
  */
 .header::before {
@@ -31,38 +31,14 @@
   padding-inline: var(--header-gutter);
 }
 
-.actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+/* Full-height tap target inside the 60px bar */
+.lockup {
+  min-height: 44px;
 }
 
-/* Mobile & tablet: navigation opens as a panel under the bar. */
-.nav {
-  display: none;
-  position: absolute;
-  inset-inline: 0;
-  top: calc(100% + var(--border-width));
-  padding: var(--space-2) var(--header-gutter) var(--space-6);
-  background-color: var(--glass-bg-strong);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
-  border-bottom: var(--border-width) solid var(--color-rule);
-}
-
-.nav[data-open] {
-  display: block;
-}
-
-.navList {
-  display: flex;
-  flex-direction: column;
-}
-
+/* Desktop link style (the mobile menu restyles these below) */
 .navLink {
   display: block;
-  padding-block: var(--space-4);
-  border-bottom: var(--border-width) solid var(--color-rule);
   font-size: var(--text-nav);
   line-height: var(--leading-body);
   letter-spacing: var(--tracking-nav);
@@ -75,29 +51,131 @@
   color: var(--color-brand);
 }
 
-.menuSignIn {
-  padding-top: var(--space-6);
-}
-
-.barSignIn {
+.navIndex,
+.menuContact {
   display: none;
 }
 
-.menuToggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-inline-end: -10px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--color-heading);
-  cursor: pointer;
+/* Desktop: inline navigation at the right of the bar */
+@media (min-width: 1024px) {
+  .navList {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .menuToggle {
+    display: none;
+  }
 }
 
-/* Three-line icon that turns into a cross when the menu is open. */
+/*
+ * Mobile & tablet: a full-screen sheet under the bar. The links sit in the
+ * lower part of the screen, within reach of a thumb, set like the numbered
+ * index of the Institutions section.
+ */
+@media (max-width: 1023.98px) {
+  .nav {
+    position: fixed;
+    inset: calc(var(--header-h) + var(--border-width)) 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--space-10);
+    padding: var(--space-10) var(--header-gutter) calc(var(--space-8) + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background-color: var(--glass-bg-strong);
+    -webkit-backdrop-filter: var(--glass-filter);
+    backdrop-filter: var(--glass-filter);
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 300ms var(--ease-out),
+      visibility 0s linear 300ms;
+  }
+
+  .nav[data-open] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 300ms var(--ease-out);
+  }
+
+  .navList {
+    border-top: var(--border-width) solid var(--color-rule);
+  }
+
+  .navList > li {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 300ms var(--ease-out),
+      transform 400ms var(--ease-out);
+  }
+
+  .nav[data-open] .navList > li {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(60ms + var(--item) * 50ms);
+  }
+
+  .navLink {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-block: var(--space-5);
+    border-bottom: var(--border-width) solid var(--color-rule);
+    font-size: clamp(1.75rem, 7.5vw, 2.5rem);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--color-heading);
+  }
+
+  .navIndex {
+    display: block;
+    flex: none;
+    width: 2.25rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-caps);
+    color: var(--color-brand);
+  }
+
+  .menuContact {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-body-strong);
+  }
+
+  .menuContact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .menuToggle {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-inline-end: -12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-heading);
+    cursor: pointer;
+  }
+}
+
+/* Three-line icon that turns into a cross when the menu is open */
 .menuIcon,
 .menuIcon::before,
 .menuIcon::after {
@@ -106,7 +184,7 @@
   height: 1.5px;
   background-color: currentColor;
   transition:
-    transform var(--duration-fast) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard),
     background-color var(--duration-fast) var(--ease-standard);
 }
 
@@ -141,62 +219,27 @@
   transform: rotate(-45deg);
 }
 
-@media (min-width: 640px) {
-  .barSignIn {
-    display: inline-flex;
-  }
-
-  .menuSignIn {
-    display: none;
-  }
-}
-
-/* Desktop: inline navigation, as in Figma. */
-@media (min-width: 1024px) {
+@media (prefers-reduced-motion: reduce) {
   .nav,
-  .nav[data-open] {
-    display: block;
-    position: static;
-    padding: 0;
-    background: none;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    border: 0;
-  }
-
-  .navList {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--space-8);
-  }
-
-  .navLink {
-    padding-block: 0;
-    border-bottom: 0;
-  }
-
-  .menuToggle {
-    display: none;
+  .nav[data-open],
+  .navList > li,
+  .nav[data-open] .navList > li {
+    transform: none;
+    transition: none;
   }
 }
 
 /* Solid background where blur isn't supported or transparency is reduced */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .header::before {
-    background-color: var(--color-bg);
-  }
-
-  .nav[data-open] {
+  .header::before,
+  .nav {
     background-color: var(--color-bg);
   }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .header::before {
-    background-color: var(--color-bg);
-  }
-
-  .nav[data-open] {
+  .header::before,
+  .nav {
     background-color: var(--color-bg);
   }
 }

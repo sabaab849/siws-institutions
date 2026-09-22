@@ -47,7 +47,7 @@ export function InstitutionRow({
           </p>
         </div>
         <span className={styles.thumb} aria-hidden="true">
-          <InstitutionVisual visual={visual} className={styles.thumbVisual} />
+          <InstitutionVisual visual={visual} size="thumb" className={styles.thumbVisual} />
         </span>
         <span className={styles.arrow}>
           <Icon src={arrowUpRight} size={15} />

@@ -13,7 +13,7 @@ type SectionTitleProps = {
   className?: string;
 };
 
-/** Montserrat section heading (`<h2>`). */
+/** Bold section heading (`<h2>`). */
 export function SectionTitle({
   children,
   id,

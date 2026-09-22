@@ -44,6 +44,71 @@
   color: var(--color-body);
 }
 
+/*
+ * Phones: one slim meta row (compact category pill, date, icon) above the
+ * title, which runs the full width and stops after two lines. "Posted" is
+ * read out but not shown; the date truncates rather than wrap if space runs out.
+ */
+@media (max-width: 639.98px) {
+  .item {
+    grid-template-areas:
+      'tag date action'
+      'title title title';
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: var(--space-3) var(--space-2);
+    padding: calc(var(--space-4) - var(--border-width));
+  }
+
+  /* Title and date join the card's grid directly */
+  .content {
+    display: contents;
+  }
+
+  .tag {
+    width: auto;
+    height: 24px;
+    padding: 0 var(--space-2);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-nano);
+    letter-spacing: 0.08em;
+  }
+
+  .date {
+    grid-area: date;
+    min-width: 0;
+    overflow: hidden;
+    font-size: var(--text-label);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .posted {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .action {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+  }
+
+  .title {
+    display: -webkit-box;
+    grid-area: title;
+    overflow: hidden;
+    font-size: var(--text-body-sm);
+    line-height: 1.375rem; /* 22px */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
 /* Tablet & desktop: single row, as in Figma */
 @media (min-width: 640px) {
   .item {

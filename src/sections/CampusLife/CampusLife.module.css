@@ -25,6 +25,14 @@
   gap: var(--space-8);
 }
 
+@media (max-width: 639.98px) {
+  .grid,
+  .side,
+  .highlights {
+    gap: var(--space-7);
+  }
+}
+
 @media (min-width: 640px) {
   .highlights {
     grid-template-columns: repeat(2, minmax(0, 1fr));

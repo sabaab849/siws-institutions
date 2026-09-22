@@ -5,10 +5,8 @@ export interface LinkItem {
   external?: boolean;
 }
 
-// '#' hrefs are placeholders until the real URLs are provided.
 export const site = {
   name: "The South Indians' Welfare Society",
-  signInHref: '#',
   address: 'Plot 337, Major R. Parameshwaran Marg, Wadala (West), Mumbai 400 031',
   email: 'info@siws.edu',
   phone: '+91 22 2411 2345',

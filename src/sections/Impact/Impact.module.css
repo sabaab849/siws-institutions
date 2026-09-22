@@ -1,5 +1,5 @@
 .impact {
-  padding-block: var(--section-y-lg);
+  padding-block: var(--section-y);
   background-color: var(--color-brand);
 }
 
@@ -12,6 +12,12 @@
 .stats {
   display: grid;
   gap: var(--space-10);
+}
+
+@media (max-width: 639.98px) {
+  .stats {
+    gap: var(--space-8);
+  }
 }
 
 @media (min-width: 640px) {

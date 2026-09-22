@@ -3,13 +3,19 @@ import juniorCollege from '../assets/photos/institutions/junior-college.webp';
 import preSchool from '../assets/photos/institutions/pre-school.webp';
 import primarySchool from '../assets/photos/institutions/primary-school.webp';
 import secondarySchool from '../assets/photos/institutions/secondary-school.webp';
+// 360px copies for the row thumbnails on phones and tablets
+import degreeCollegeThumb from '../assets/photos/institutions/degree-college-thumb.webp';
+import juniorCollegeThumb from '../assets/photos/institutions/junior-college-thumb.webp';
+import preSchoolThumb from '../assets/photos/institutions/pre-school-thumb.webp';
+import primarySchoolThumb from '../assets/photos/institutions/primary-school-thumb.webp';
+import secondarySchoolThumb from '../assets/photos/institutions/secondary-school-thumb.webp';
 
 /**
  * Preview for an institution: a real SIWS photo (client's, cropped 3:2), or a
  * typographic tile where no authentic photo exists yet.
  */
 export type InstitutionVisual =
-  | { kind: 'photo'; src: string }
+  | { kind: 'photo'; src: string; thumb: string }
   | { kind: 'type'; lines: string[] };
 
 interface InstitutionContent {
@@ -33,7 +39,7 @@ export const institutions = {
       category: 'Degree College',
       details: 'B.Sc. / M.Sc. / B.Com. / M.Com. / Ph.D. · Autonomous · NAAC A Grade',
       href: 'https://siwscollege.edu.in/',
-      visual: { kind: 'photo', src: degreeCollege },
+      visual: { kind: 'photo', src: degreeCollege, thumb: degreeCollegeThumb },
     },
     {
       index: '02',
@@ -41,28 +47,28 @@ export const institutions = {
       category: 'Junior College',
       details: 'HSC Commerce & Science · Maharashtra State Board',
       href: 'https://siwsschool.edu.in/junior-college',
-      visual: { kind: 'photo', src: juniorCollege },
+      visual: { kind: 'photo', src: juniorCollege, thumb: juniorCollegeThumb },
     },
     {
       index: '03',
       name: 'S.I.W.S. Secondary School',
       details: 'Secondary Education · K.G. to Class X · SSC Board',
       href: 'https://siwsschool.edu.in/secondary',
-      visual: { kind: 'photo', src: secondarySchool },
+      visual: { kind: 'photo', src: secondarySchool, thumb: secondarySchoolThumb },
     },
     {
       index: '04',
       name: 'S.I.W.S. Primary School',
       details: 'Primary Education · K.G. to Class IV · SSC Board',
       href: 'https://siwsschool.edu.in/primary',
-      visual: { kind: 'photo', src: primarySchool },
+      visual: { kind: 'photo', src: primarySchool, thumb: primarySchoolThumb },
     },
     {
       index: '05',
       name: 'S.I.W.S. Pre-School',
       details: 'Early Years · Nursery & Kindergarten · Foundation for Life',
       href: 'https://siwsschool.edu.in/kindergarten',
-      visual: { kind: 'photo', src: preSchool },
+      visual: { kind: 'photo', src: preSchool, thumb: preSchoolThumb },
     },
   ] satisfies InstitutionContent[],
 };

@@ -19,9 +19,7 @@
 }
 
 .overline {
-  font-family: var(--font-display);
   font-size: var(--text-micro);
-  font-variation-settings: var(--font-variation-text);
   letter-spacing: var(--tracking-overline);
 }
 

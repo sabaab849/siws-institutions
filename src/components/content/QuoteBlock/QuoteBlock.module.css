@@ -8,8 +8,7 @@
 }
 
 .quote {
-  font-family: var(--font-accent);
-  font-size: var(--text-h3);
+  font-size: var(--text-lead);
   font-style: italic;
   font-weight: var(--weight-medium);
   line-height: var(--leading-snug);
@@ -17,9 +16,7 @@
 }
 
 .translation {
-  font-family: var(--font-display);
   font-size: var(--text-label);
-  font-variation-settings: var(--font-variation-text);
   font-weight: var(--weight-medium);
   line-height: normal;
   letter-spacing: var(--tracking-caps);

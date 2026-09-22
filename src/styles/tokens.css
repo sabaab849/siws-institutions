@@ -51,26 +51,18 @@
   --color-on-brand-rule-8: rgb(255 255 255 / 0.08);
   --color-on-brand-rule-6: rgb(255 255 255 / 0.06);
 
-  /* Typography: families */
-  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-accent: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-quote: 'Playfair Display', Georgia, 'Times New Roman', serif;
-
   /*
-   * Optical sizes. DM Sans uses automatic optical sizing, as Figma does.
-   * Figma's Inter has no optical sizes, so Inter text is pinned to its text cut;
-   * the hero title uses the display cut as its SF Pro stand-in.
+   * Typography: one family everywhere. DM Sans uses automatic optical sizing,
+   * as Figma does, so large headings get its tighter display cut.
    */
-  --font-variation-text: 'opsz' 14;
-  --font-variation-display: 'opsz' 32;
+  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   /* Typography: sizes (responsive ones step up at the breakpoints below) */
   --text-display: 5.5rem; /* 88 */
-  --text-h2-lg: 2.25rem; /* 36 → 44 → 56 */
-  --text-h2: 2rem; /* 32 → 40 → 48 */
-  --text-quote: 1.75rem; /* 28 → 44 → 56 */
+  /* Phone sizes ease down on the narrowest screens (320px) so headings don't break into extra lines */
+  --text-h2-lg: clamp(2rem, 9.5vw, 2.25rem); /* 36 → 44 → 56 */
+  --text-h2: clamp(1.75rem, 8.5vw, 2rem); /* 32 → 40 → 48 */
+  --text-quote: clamp(1.5rem, 7.5vw, 1.75rem); /* 28 → 44 → 56 */
   --text-stat-xl: 3.5rem; /* 56 → 64 → 80 */
   --text-stat-lg: 2.5rem; /* 40 → 44 → 48 */
   --text-stat-md: 2.5rem; /* 40 */
@@ -84,7 +76,7 @@
   --text-body: 1rem; /* 16 */
   --text-body-sm: 0.9375rem; /* 15 */
   --text-sm: 0.875rem; /* 14 */
-  --text-wordmark: 0.88rem; /* 14.08 */
+  --text-wordmark: 0.875rem; /* 14 */
   --text-xs: 0.8125rem; /* 13 */
   --text-nav: 0.78rem; /* 12.48 */
   --text-label: 0.75rem; /* 12 */
@@ -110,7 +102,7 @@
 
   /* Typography: letter spacing */
   --tracking-display: -0.01em;
-  --tracking-wordmark: 0.01em;
+  --tracking-wordmark: -0.005em;
   --tracking-nav: 0.06em;
   --tracking-tag: 0.1em;
   --tracking-caps: 0.12em;
@@ -145,8 +137,7 @@
   --header-h: 3.75rem; /* 60 */
   --gutter: var(--space-5);
   --header-gutter: var(--space-5);
-  --section-y: var(--space-16); /* 120 on desktop */
-  --section-y-lg: var(--space-16); /* 140 on desktop */
+  --section-y: var(--space-12); /* space above and below each section: 48 → 64 → 80 */
 
   /* Borders & radii */
   --border-width: 1px;
@@ -185,8 +176,7 @@
   :root {
     --gutter: var(--space-10);
     --header-gutter: var(--space-10);
-    --section-y: var(--space-22);
-    --section-y-lg: var(--space-22);
+    --section-y: var(--space-16);
 
     --text-h2-lg: 2.75rem;
     --text-h2: 2.5rem;
@@ -200,8 +190,7 @@
   :root {
     --gutter: var(--space-20);
     --header-gutter: var(--space-12);
-    --section-y: var(--space-30);
-    --section-y-lg: var(--space-35);
+    --section-y: var(--space-20);
 
     /* 56px / 48px at 1440px, scaling with the two-column layouts below that */
     --text-h2-lg: min(3.5rem, calc(4.375vw - 7px));

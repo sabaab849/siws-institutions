@@ -22,7 +22,6 @@
   left: -0.04em;
   display: flex;
   flex-direction: column;
-  font-family: var(--font-heading);
   font-size: 30cqi; /* scales with the tile, from row thumbnail to hover preview */
   font-weight: var(--weight-bold);
   line-height: 0.84;

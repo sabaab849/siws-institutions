@@ -21,7 +21,6 @@
 }
 
 .title {
-  font-family: var(--font-heading);
   font-size: var(--text-h5);
   font-weight: var(--weight-bold);
   color: var(--color-heading);
@@ -85,6 +84,47 @@
 .horizontal .media {
   height: 160px;
   border-radius: var(--radius-xs);
+}
+
+/*
+ * Phones: every card is a photo with its caption underneath, flush left, so the
+ * feature and framed cards line up with the stacked ones. Photos keep one shape
+ * at every width, so the crop never tightens on faces.
+ */
+@media (max-width: 639.98px) {
+  .feature,
+  .horizontal {
+    gap: var(--space-3);
+    height: auto;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .feature {
+    justify-content: flex-start;
+  }
+
+  .feature .media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-sm);
+  }
+
+  .caption {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .stacked .media,
+  .horizontal .media {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-sm);
+  }
 }
 
 @media (min-width: 640px) {

@@ -54,6 +54,16 @@
   color: var(--color-body);
 }
 
+/*
+ * Phones: `clip` looks the same as `hidden` but can't be scrolled, so focusing
+ * an off-screen milestone card never shifts the section sideways.
+ */
+@media (max-width: 639.98px) {
+  .story {
+    overflow: clip;
+  }
+}
+
 /* Desktop: two 624px columns with an 80px gap. As in Figma, the pair is 48px
    wider than the content box, so the paragraph runs into the right gutter. */
 @media (min-width: 1024px) {

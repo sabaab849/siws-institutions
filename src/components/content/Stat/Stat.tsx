@@ -8,7 +8,7 @@ type StatProps = {
   label: string;
   /** Word set beside the value, e.g. "Years". */
   unit?: string;
-  /** `hero`: compact Inter figure. `impact`: large Montserrat figure with a rule. */
+  /** `hero`: compact figure. `impact`: large figure with a rule. */
   variant: 'hero' | 'impact';
   /** Entrance for the value, played once `active` turns true. */
   motion?: { effect: StatEffect; active: boolean };

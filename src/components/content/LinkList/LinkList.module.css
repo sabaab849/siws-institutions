@@ -72,3 +72,26 @@
 .inverse .link:hover {
   opacity: 1;
 }
+
+/*
+ * Phones & tablets: every link is a 44px tap row. The gaps shrink by the same
+ * amount, so the lists keep nearly the same rhythm.
+ */
+@media (max-width: 1023.98px) {
+  .default {
+    gap: var(--space-2);
+  }
+
+  .inverse {
+    gap: var(--space-1);
+  }
+
+  .default .items,
+  .inverse .items {
+    gap: 0;
+  }
+
+  .link {
+    min-height: 44px;
+  }
+}

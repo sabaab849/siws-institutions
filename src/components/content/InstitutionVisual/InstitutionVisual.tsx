@@ -4,6 +4,8 @@ import styles from './InstitutionVisual.module.css';
 
 type InstitutionVisualProps = {
   visual: Visual;
+  /** `thumb`: the small row thumbnail file. `full`: the hover-preview size. */
+  size?: 'thumb' | 'full';
   className?: string;
 };
 
@@ -12,12 +14,12 @@ type InstitutionVisualProps = {
  * type composition (scaled to the box) when there is no photo. Decorative: the
  * row it belongs to carries the name, so there is no alt text.
  */
-export function InstitutionVisual({ visual, className }: InstitutionVisualProps) {
+export function InstitutionVisual({ visual, size = 'full', className }: InstitutionVisualProps) {
   if (visual.kind === 'photo') {
     return (
       <img
         className={cx(styles.visual, styles.photo, className)}
-        src={visual.src}
+        src={size === 'thumb' ? visual.thumb : visual.src}
         alt=""
         loading="lazy"
         decoding="async"

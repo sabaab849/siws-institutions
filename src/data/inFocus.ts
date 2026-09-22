@@ -2,6 +2,10 @@
 import press from '../assets/photos/press-ashadhi-ekadashi.webp';
 import primarySection from '../assets/photos/primary-section.webp';
 import yoga from '../assets/photos/yoga.webp';
+// Smaller copies for phones and tablets
+import pressSmall from '../assets/photos/press-ashadhi-ekadashi-800.webp';
+import primarySectionSmall from '../assets/photos/primary-section-800.webp';
+import yogaSmall from '../assets/photos/yoga-800.webp';
 
 export const inFocus = {
   eyebrow: 'In Focus',
@@ -15,6 +19,7 @@ export const inFocus = {
     image: press,
     imageWidth: 1400,
     imageHeight: 626,
+    imageMobile: { src: pressSmall, width: 800, fullWidth: 1400 },
     imageAlt:
       'Hindustan Times clipping headlined "Ashadhi Ekadashi celebration at SIWS", with photos of students dressed as Warkaris',
   },
@@ -26,6 +31,7 @@ export const inFocus = {
       imageAlt:
         'Students writing at their desks, seen through an open classroom window, as a teacher reviews a lesson on a smart board',
       imagePosition: '50% 60%',
+      imageMobile: { src: primarySectionSmall, width: 800, fullWidth: 1200 },
     },
     {
       category: 'Health & Wellness',
@@ -33,6 +39,7 @@ export const inFocus = {
       image: yoga,
       imageAlt: 'Rows of college students meditating cross-legged on the campus sports court',
       imagePosition: '50% 65%',
+      imageMobile: { src: yogaSmall, width: 800, fullWidth: 1200 },
     },
   ],
 };

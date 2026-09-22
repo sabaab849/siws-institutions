@@ -90,6 +90,25 @@ export function CommunityIcon(props: IconProps) {
   );
 }
 
+/** Small right-pointing arrow for carousel controls (rotate it for "previous"). */
+export function ArrowIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <path d="M4 10h12M11 5l5 5-5 5" />
+    </svg>
+  );
+}
+
 /** Today: a compass star pointing ahead. */
 export function CompassStarIcon(props: IconProps) {
   return (

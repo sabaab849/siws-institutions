@@ -15,13 +15,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-7);
-  font-family: var(--font-display);
-  font-variation-settings: var(--font-variation-text);
 }
 
 .title {
-  font-size: clamp(2.25rem, 10.5vw, 4.5rem);
-  font-variation-settings: var(--font-variation-display);
+  /* Keeps "The South Indians'" on one line down to a 320px phone */
+  font-size: clamp(2rem, 10.2vw, 4.5rem);
   font-weight: var(--weight-display);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-display);
@@ -63,12 +61,31 @@
   padding-top: calc(var(--space-6) - var(--border-width));
 }
 
-/* Desktop: the Figma two-column layout, scaled proportionally below 1440px. */
-@media (min-width: 1024px) {
-  .hero {
-    padding-bottom: var(--space-38);
+/*
+ * Phones: a tighter vertical rhythm, so the title, quote and illustration
+ * share the first screen and the figures follow straight after.
+ */
+@media (max-width: 639.98px) {
+  .body {
+    gap: var(--space-8);
+    padding-top: var(--space-8);
   }
 
+  .copy {
+    gap: var(--space-5);
+  }
+
+  .quote {
+    min-height: 0;
+  }
+
+  .stats {
+    row-gap: var(--space-7);
+  }
+}
+
+/* Desktop: the Figma two-column layout, scaled proportionally below 1440px. */
+@media (min-width: 1024px) {
   .body {
     grid-template-columns: 59.375% minmax(0, 1fr); /* 760px of 1280px */
     column-gap: 5.625%; /* 72px of 1280px */

@@ -1,4 +1,5 @@
 .button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,17 +15,13 @@
     color var(--duration-fast) var(--ease-standard);
 }
 
-.outline {
-  padding: 5px 14px;
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-heading);
-}
-
-.outline:hover {
-  border-color: var(--color-brand);
-  color: var(--color-brand);
+/* Touch screens: an invisible margin brings small pills up to a 44px tap target */
+@media (pointer: coarse) {
+  .button::after {
+    content: '';
+    position: absolute;
+    inset: -6px -4px;
+  }
 }
 
 .accent {

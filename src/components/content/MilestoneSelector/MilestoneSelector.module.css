@@ -112,7 +112,6 @@
 
 .year {
   margin-top: var(--space-6);
-  font-family: var(--font-heading);
   font-size: var(--text-numeral);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
@@ -245,6 +244,153 @@
   from {
     opacity: 0.35;
     transform: translateY(6px);
+  }
+}
+
+/* Carousel controls: phones only */
+.arrow,
+.pagination {
+  display: none;
+}
+
+/*
+ * Phones: a focus carousel. All cards share one grid cell, centred, and each
+ * is placed by its distance from the centre, set by the component: --offset
+ * slides it, --focus (1 centred, 0 one card away) scales and fades it, --blur
+ * softens it. The whole card comes into focus: illustration, year, title and
+ * description together. The viewport clips, so nothing scrolls sideways.
+ */
+@media (max-width: 639.98px) {
+  .selector {
+    gap: var(--space-6);
+  }
+
+  /*
+   * Cards are 55% of the screen, and neighbours sit 0.88 of a card width + 8px
+   * away, which puts their centres at the screen edges: about half of each
+   * neighbour, illustration included, peeks in.
+   */
+  .viewport {
+    --card-w: min(55vw, 260px);
+    --step: calc(var(--card-w) * 0.88 + 8px); /* same as stepFor() in the component */
+    --side-scale: 0.76;
+    --side-opacity: 0.45;
+    --carousel-motion: 420ms var(--ease-out);
+
+    position: relative;
+    margin-inline: calc(-1 * var(--gutter));
+    overflow: clip;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  .list {
+    display: grid;
+    justify-items: center;
+    margin-inline: 0;
+    padding: var(--space-2) 0 var(--space-1);
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .item {
+    grid-area: 1 / 1;
+    z-index: var(--layer, 0);
+    width: var(--card-w);
+    transform: translateX(calc(var(--offset, 0) * var(--step)))
+      scale(calc(var(--side-scale) + (1 - var(--side-scale)) * var(--focus, 0)));
+    opacity: calc(var(--side-opacity) + (1 - var(--side-opacity)) * var(--focus, 0));
+    filter: var(--blur, none);
+    transition:
+      transform var(--carousel-motion),
+      opacity var(--carousel-motion),
+      filter var(--carousel-motion);
+    will-change: transform;
+  }
+
+  /* While a finger is on the row, cards follow it exactly */
+  .viewport[data-dragging] .item {
+    transition: none;
+  }
+
+  .milestone {
+    align-items: center;
+    text-align: center;
+  }
+
+  .description {
+    margin-inline: auto;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: var(--border-width) solid var(--color-border-hover);
+    border-radius: 50%;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    color: var(--color-brand);
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: opacity var(--duration-base) var(--ease-standard);
+  }
+
+  .arrowPrev {
+    left: var(--space-3);
+  }
+
+  .arrowNext {
+    right: var(--space-3);
+  }
+
+  .arrowIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .arrowPrev .arrowIcon {
+    transform: rotate(180deg);
+  }
+
+  .arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  /* Current milestone: an orange dash among small dots */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-1-5);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--color-border-hover);
+    transition:
+      width var(--carousel-motion),
+      background-color var(--carousel-motion);
+  }
+
+  .dot[data-active] {
+    width: 20px;
+    background-color: var(--color-accent);
+  }
+}
+
+@media (max-width: 639.98px) and (prefers-reduced-motion: reduce) {
+  .item,
+  .dot {
+    transition: none;
   }
 }
 

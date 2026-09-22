@@ -1,5 +1,6 @@
 import { cx } from '../../../utils/cx';
 import { Eyebrow } from '../../ui/Eyebrow/Eyebrow';
+import { Picture, type MobileImage } from '../../ui/Picture/Picture';
 import styles from './PressCard.module.css';
 
 type PressCardProps = {
@@ -13,6 +14,8 @@ type PressCardProps = {
   /** Intrinsic size of the clipping, so its space is reserved before it loads. */
   imageWidth: number;
   imageHeight: number;
+  /** Smaller copy of the clipping for phones and tablets. */
+  imageMobile?: MobileImage;
   className?: string;
 };
 
@@ -26,13 +29,15 @@ export function PressCard({
   imageAlt,
   imageWidth,
   imageHeight,
+  imageMobile,
   className,
 }: PressCardProps) {
   return (
     <article className={cx(styles.card, className)}>
-      <img
+      <Picture
         className={styles.clipping}
         src={image}
+        mobile={imageMobile}
         alt={imageAlt}
         width={imageWidth}
         height={imageHeight}

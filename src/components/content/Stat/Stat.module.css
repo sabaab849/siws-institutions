@@ -20,8 +20,6 @@
 /* Hero stats row */
 .hero {
   gap: var(--space-2);
-  font-family: var(--font-display);
-  font-variation-settings: var(--font-variation-text);
   line-height: normal;
 }
 
@@ -43,7 +41,6 @@
 }
 
 .impact .value {
-  font-family: var(--font-heading);
   font-weight: var(--weight-bold);
   color: var(--color-on-brand);
 }

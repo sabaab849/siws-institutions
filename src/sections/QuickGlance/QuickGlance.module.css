@@ -4,7 +4,7 @@
 
 /* Shares the site-wide 1280px column so its edges line up with other sections */
 .inner {
-  padding-block: var(--space-16);
+  padding-block: var(--section-y);
 }
 
 .overview {
@@ -51,11 +51,14 @@
   gap: var(--space-3);
 }
 
-@media (min-width: 640px) {
-  .inner {
-    padding-block: var(--space-20);
+@media (max-width: 639.98px) {
+  .announcements {
+    gap: var(--space-8);
+    padding-top: var(--space-10);
   }
+}
 
+@media (min-width: 640px) {
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-8);

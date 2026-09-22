@@ -62,8 +62,7 @@
 }
 
 .quote {
-  padding-left: 55px;
-  font-family: var(--font-quote);
+  padding-left: clamp(40px, 12.5vw, 55px);
   font-size: var(--text-quote);
   font-weight: var(--weight-bold);
   line-height: var(--leading-heading);
@@ -75,7 +74,7 @@
 }
 
 .translation {
-  padding-left: 55px;
+  padding-left: clamp(40px, 12.5vw, 55px);
   font-size: var(--text-lead);
   line-height: var(--leading-relaxed);
 }
@@ -107,6 +106,14 @@
 .pillars li + li::before {
   content: '|';
   opacity: 0.3;
+}
+
+/* Phones & tablets: the 10px labels are too small to read at arm's length */
+@media (max-width: 1023.98px) {
+  .label,
+  .footerRow {
+    font-size: var(--text-micro);
+  }
 }
 
 /* Desktop: quote | rule | translation, 64px gutters */

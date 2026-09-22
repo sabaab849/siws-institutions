@@ -2,7 +2,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'reac
 import { cx } from '../../../utils/cx';
 import styles from './Button.module.css';
 
-type ButtonVariant = 'outline' | 'accent';
+type ButtonVariant = 'accent';
 
 type BaseProps = {
   children: ReactNode;
@@ -21,10 +21,10 @@ export type ButtonProps = LinkButtonProps | NativeButtonProps;
 /** Renders an `<a>` when given `href`, otherwise a `<button>`. */
 export function Button(props: ButtonProps) {
   if (props.href !== undefined) {
-    const { variant = 'outline', className, ...rest } = props;
+    const { variant = 'accent', className, ...rest } = props;
     return <a className={cx(styles.button, styles[variant], className)} {...rest} />;
   }
 
-  const { variant = 'outline', className, type = 'button', ...rest } = props;
+  const { variant = 'accent', className, type = 'button', ...rest } = props;
   return <button type={type} className={cx(styles.button, styles[variant], className)} {...rest} />;
 }

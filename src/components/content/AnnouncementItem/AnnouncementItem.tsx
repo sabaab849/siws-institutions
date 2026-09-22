@@ -21,7 +21,8 @@ export function AnnouncementItem({ category, title, date, dateLabel, icon }: Ann
       <div className={styles.content}>
         <p className={styles.title}>{title}</p>
         <p className={styles.date}>
-          Posted <time dateTime={date}>{dateLabel}</time>
+          <span className={styles.posted}>Posted </span>
+          <time dateTime={date}>{dateLabel}</time>
         </p>
       </div>
       <IconTile variant="square" icon={icon} iconSize={18} className={styles.action} />

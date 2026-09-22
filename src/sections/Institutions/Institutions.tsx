@@ -6,11 +6,18 @@ import { Eyebrow } from '../../components/ui/Eyebrow/Eyebrow';
 import { SectionTitle } from '../../components/ui/SectionTitle/SectionTitle';
 import { institutions } from '../../data/institutions';
 import { useInViewOnce } from '../../hooks/useInViewOnce';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { withLineBreaks } from '../../utils/withLineBreaks';
 import styles from './Institutions.module.css';
 
 /** A closed preview keeps its last image this long (its fade-out), then resets so the next opens cleanly. */
 const PREVIEW_RESET_MS = 400;
+
+/**
+ * Where the shared hover preview is shown (matches Institutions.module.css).
+ * Elsewhere it isn't rendered, so touch screens don't download its photos.
+ */
+const HOVER_PREVIEW_QUERY = '(min-width: 1024px) and (hover: hover) and (pointer: fine)';
 
 type PreviewState = {
   active: number | null;
@@ -58,6 +65,7 @@ function usePreview() {
 export function Institutions() {
   const [sectionRef, inView] = useInViewOnce<HTMLElement>();
   const preview = usePreview();
+  const canPreview = useMediaQuery(HOVER_PREVIEW_QUERY);
 
   return (
     <section
@@ -94,15 +102,17 @@ export function Institutions() {
               />
             ))}
           </ol>
-          <InstitutionPreview
-            ref={preview.previewRef}
-            className={styles.preview}
-            items={institutions.items}
-            active={preview.active}
-            open={preview.open}
-            follow={preview.follow}
-            y={preview.y}
-          />
+          {canPreview && (
+            <InstitutionPreview
+              ref={preview.previewRef}
+              className={styles.preview}
+              items={institutions.items}
+              active={preview.active}
+              open={preview.open}
+              follow={preview.follow}
+              y={preview.y}
+            />
+          )}
         </div>
       </Container>
     </section>
