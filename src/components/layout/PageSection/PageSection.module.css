@@ -1,0 +1,103 @@
+.section {
+  padding-block: var(--section-y);
+}
+
+.default {
+  background-color: var(--color-surface);
+}
+
+.bg {
+  background-color: var(--color-bg);
+}
+
+.warm {
+  background-color: var(--color-bg-warm);
+}
+
+.brand {
+  --focus-ring: var(--color-on-brand);
+  background-color: var(--color-brand);
+  color: var(--color-on-brand-soft);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+/* The title block, with any link to the rest of the section beside it */
+.headRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.head {
+  max-width: 60rem;
+}
+
+.action {
+  flex: none;
+  order: 3; /* under the lead on phones */
+}
+
+/*
+ * From tablets the link sits out at the right, its baseline level with the
+ * eyebrow above the heading. The lead runs on underneath both.
+ */
+@media (min-width: 768px) {
+  .headRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-10);
+    row-gap: var(--space-5);
+  }
+
+  .head {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: baseline;
+  }
+
+  .action {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: baseline;
+  }
+
+  .lead {
+    grid-row: 2;
+    grid-column: 1;
+  }
+}
+
+/* body-lg */
+.lead {
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--type-body-lg-weight);
+  line-height: var(--type-body-lg-leading);
+  color: var(--color-body);
+}
+
+.brand .lead,
+.brand p {
+  color: var(--color-on-brand-soft);
+}
+
+
+/* On the brand band a text link is light, like the text around it; a filled
+   button keeps its own colours */
+.brand .action a[class*='link'] {
+  color: var(--color-on-brand);
+}
+
+.brand .action a[class*='link']:hover {
+  color: var(--color-on-brand-soft);
+}
+
+@media (max-width: 1023.98px) {
+  .lead {
+    text-wrap: pretty;
+  }
+}

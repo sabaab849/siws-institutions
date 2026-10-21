@@ -1,0 +1,301 @@
+/* Where the names and photographs come from */
+.source {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.source a {
+  color: var(--color-brand);
+}
+
+/* The Society's vision, set large on the brand band */
+.vision {
+  max-width: 34ch;
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-on-brand);
+  text-wrap: pretty;
+}
+
+/* The mission, numbered, two to a row on desktop */
+.mission {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.missionPoint {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-rule-strong);
+}
+
+.missionIndex {
+  font-size: var(--text-micro);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  letter-spacing: var(--tracking-caps);
+  color: var(--color-accent-text);
+}
+
+.missionText {
+  max-width: 44ch;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-heading);
+  text-wrap: pretty;
+}
+
+/* Core values: a card for each, three to a row on desktop */
+.values {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  padding: calc(var(--space-6) - var(--border-width));
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+}
+
+.valueName {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.valueText {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+@media (min-width: 640px) {
+  .mission,
+  .values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mission {
+    gap: var(--space-8) var(--space-10);
+  }
+
+  .values {
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .vision {
+    font-size: var(--text-h3);
+  }
+
+  .values {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* The Society's motto, set apart from the story above it */
+.motto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 44ch;
+  margin: 0;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--color-accent);
+}
+
+.mottoText {
+  margin: 0;
+  font-size: var(--text-h4);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.mottoTranslation {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/*
+ * How the Society is governed: five numbered items, set apart by space and
+ * typographic weight alone — no rules, frames or panels between them. The page
+ * carries this one list, so the band around it is held in.
+ */
+section.governanceSection {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-12);
+}
+
+.governance {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-10);
+  align-items: start;
+  margin: 0;
+}
+
+.governanceItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.governanceIndex {
+  display: block;
+  margin-bottom: var(--space-3);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  line-height: normal;
+  color: var(--color-brand);
+}
+
+.governanceTerm {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+  text-wrap: balance;
+}
+
+.governanceText {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+  text-wrap: pretty;
+}
+
+/* The Chairman's message */
+/*
+ * From the Chairman. The band carries on the hero's cream, the letter runs
+ * down the left and his photograph sits beside it. The photograph the Society
+ * publishes is only 254px wide, so the column is held to that width rather
+ * than enlarged past what the file carries.
+ */
+section.chairmanBand {
+  margin-top: calc(var(--border-width) * -1);
+  padding-top: var(--space-8);
+  background-color: var(--color-bg-warm);
+}
+
+.chairmanLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-10);
+  align-items: start;
+}
+
+.chairmanPhoto {
+  width: 100%;
+  max-width: 254px;
+  height: auto;
+  border-radius: var(--radius-xl);
+}
+
+.chairman {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 62ch;
+  margin: 0;
+}
+
+.chairmanQuote {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+  text-wrap: pretty;
+}
+
+.chairmanName {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+/* The short rule that sets the signature apart from the letter */
+.chairmanName::before {
+  content: '';
+  width: var(--space-16);
+  height: 2px;
+  margin-bottom: var(--space-5);
+  background-color: var(--color-rule-strong);
+}
+
+/* Stacked, the photograph opens the letter rather than trailing the signature */
+@media (max-width: 767.98px) {
+  .chairmanPhoto {
+    order: -1;
+  }
+}
+
+/* Tablets up: the photograph takes its own column beside the letter */
+@media (min-width: 768px) {
+  .chairmanLayout {
+    grid-template-columns: minmax(0, 1fr) 254px;
+    gap: var(--space-12);
+  }
+}
+
+@media (min-width: 1024px) {
+  .chairmanLayout {
+    gap: var(--space-20);
+  }
+}
+
+.chairmanRole {
+  font-weight: var(--weight-regular);
+  color: var(--color-body);
+}
+
+/* Tablets: two columns. Desktop: three, the five items over two rows. */
+@media (min-width: 768px) {
+  .governance {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-12) var(--space-10);
+  }
+}
+
+@media (min-width: 1024px) {
+  .governance {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-16) var(--space-12);
+  }
+}
+
+/* Links on to the other governance pages */
+.nextLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

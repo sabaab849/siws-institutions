@@ -1,0 +1,180 @@
+/*
+ * News and Events: a card for each item — one across on phones, two on
+ * tablets, three from desktop. A card opens with the photograph the
+ * institution published, then its name as a tag, the date, the headline and
+ * a link back to the site that published it.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* The photograph the institution published with the item */
+.frame {
+  display: block;
+  overflow: hidden;
+  background-color: var(--color-placeholder);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  /* Set per photograph where the crop would otherwise lose faces */
+  object-position: var(--photo-position, 50% 50%);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+/* The institution that published the item */
+.tag {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-tag-bg);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.date,
+.category {
+  font-size: var(--text-micro);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+
+.title {
+  font-size: var(--type-subhead-lg-size);
+  font-weight: var(--type-subhead-lg-weight);
+  line-height: var(--type-subhead-lg-leading);
+  letter-spacing: var(--type-subhead-lg-tracking);
+  color: var(--color-heading);
+  text-wrap: pretty;
+}
+
+/* Takes the slack, so every "Read more" sits on the foot of its card */
+.text {
+  flex: 1;
+  font-size: var(--type-body-md-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  font-size: var(--type-caption-sm-size);
+  font-weight: var(--weight-semibold);
+  color: var(--color-brand);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hover: the card lifts a little and the arrow leads the way out */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card {
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+  }
+
+  .image,
+  .arrow {
+    transition: transform var(--duration-enter) var(--ease-out);
+  }
+
+  .arrow {
+    transition-duration: var(--duration-base);
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 20px rgb(16 24 40 / 0.07),
+      0 2px 4px rgb(16 24 40 / 0.04);
+  }
+
+  .card:hover .image {
+    transform: scale(1.03);
+  }
+
+  .card:hover .arrow {
+    transform: translateX(3px);
+  }
+}
+
+.note {
+  margin-top: var(--space-8);
+}
+
+.noteTitle {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-heading);
+}
+
+.noteList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}

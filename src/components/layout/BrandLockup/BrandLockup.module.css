@@ -19,11 +19,22 @@
   object-fit: contain;
 }
 
+/*
+ * Phones: the name wraps onto a second line rather than running under the
+ * menu button. It only holds to one line once there is room for it.
+ */
 .wordmark {
+  min-width: 0;
   font-size: var(--text-wordmark);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-wordmark);
   letter-spacing: var(--tracking-wordmark);
   color: var(--color-heading);
-  white-space: nowrap;
+  text-wrap: balance;
+}
+
+@media (min-width: 420px) {
+  .wordmark {
+    white-space: nowrap;
+  }
 }

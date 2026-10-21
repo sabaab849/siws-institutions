@@ -30,7 +30,8 @@
 }
 
 .hero .label {
-  font-size: var(--text-micro);
+  /* caption-sm, in caps */
+  font-size: var(--type-caption-sm-size);
   letter-spacing: var(--tracking-overline);
   color: var(--color-body);
 }
@@ -76,5 +77,15 @@
 
   .impact .unit {
     font-size: min(var(--text-h4), 1.528vw);
+  }
+}
+
+/*
+ * Phones: the figures share a narrow column, and a worded value such as
+ * "KG to PhD" is wider than a 32px setting allows.
+ */
+@media (max-width: 639.98px) {
+  .hero .value {
+    font-size: var(--text-h3);
   }
 }

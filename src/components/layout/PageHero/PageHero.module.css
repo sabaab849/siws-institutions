@@ -1,0 +1,65 @@
+.hero {
+  padding-block: var(--section-y);
+  border-bottom: var(--border-width) solid var(--color-border);
+  background-color: var(--color-bg-warm);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+/* heading-lg */
+.title {
+  max-width: 20ch;
+  font-size: var(--type-heading-lg-size);
+  font-weight: var(--type-heading-lg-weight);
+  line-height: var(--type-heading-lg-leading);
+  letter-spacing: var(--type-heading-lg-tracking);
+  color: var(--color-heading);
+}
+
+/* body-lg */
+.intro {
+  max-width: 62ch;
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--type-body-lg-weight);
+  line-height: var(--type-body-lg-leading);
+  color: var(--color-body);
+}
+
+@media (max-width: 1023.98px) {
+  .title,
+  .intro {
+    text-wrap: pretty;
+  }
+}
+
+/*
+ * Phones and tablets: the hero's bottom padding and the first section's top
+ * padding stack into nearly 100px of white between the introduction and the
+ * first line under it — most of a phone screen. The edge of the band already
+ * separates the two, so both are trimmed. A tinted band that follows keeps its
+ * own padding, so it stays even top and bottom.
+ */
+@media (max-width: 639.98px) {
+  .hero {
+    padding-bottom: var(--space-8);
+  }
+
+  .hero + section[data-tone='default'] {
+    padding-top: var(--space-6);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .hero {
+    padding-bottom: var(--space-10);
+  }
+
+  .hero + section[data-tone='default'] {
+    padding-top: var(--space-10);
+  }
+}

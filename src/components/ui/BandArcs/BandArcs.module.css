@@ -1,0 +1,55 @@
+/*
+ * Phones: the arcs sit down in the corner of the band, where only the shortest
+ * lines reach. From tablets they run off the right edge at the band's middle.
+ */
+.arcs {
+  position: absolute;
+  right: 0;
+  bottom: -2.5rem;
+  width: 6.5rem;
+  height: 13rem;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.arcs svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.core {
+  fill: var(--color-accent);
+  stroke: none;
+}
+
+/* The accent reads stronger on a light band, so the arcs are held back */
+.warm {
+  opacity: 0.3;
+}
+
+@media (min-width: 640px) {
+  .arcs {
+    top: 50%;
+    bottom: auto;
+    width: 11rem;
+    height: 22rem;
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+
+  .warm {
+    opacity: 0.55;
+  }
+}
+
+@media (min-width: 1024px) {
+  .arcs {
+    width: 20rem;
+    height: 40rem;
+  }
+}

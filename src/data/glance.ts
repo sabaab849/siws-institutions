@@ -57,14 +57,14 @@ export const glance = {
   announcements: [
     {
       category: 'Admissions',
-      title: 'Admissions open for 2025-26 - FYBCom orientation scheduled',
+      title: 'Admissions Open for 2025-26 - FYBCom Orientation Scheduled',
       date: '2025-08-12',
       dateLabel: '12 Aug 2025',
       icon: graduationCapSm,
     },
     {
       category: 'Programme',
-      title: "PG Diploma in Digital Marketing (Analytics) launched - Mumbai's first",
+      title: "PG Diploma in Digital Marketing (Analytics) Launched - Mumbai's First",
       date: '2025-08-08',
       dateLabel: '08 Aug 2025',
       icon: bookSm,
@@ -78,14 +78,14 @@ export const glance = {
     },
     {
       category: 'Welfare',
-      title: 'Yuva Raksha student accident insurance scheme implemented',
+      title: 'Yuva Raksha Student Accident Insurance Scheme Implemented',
       date: '2025-08-02',
       dateLabel: '02 Aug 2025',
       icon: shieldSm,
     },
     {
       category: 'Accreditation',
-      title: 'SIWS College re-accredited NAAC A Grade with CGPA 3.15',
+      title: 'SIWS College Re-accredited NAAC A Grade With CGPA 3.15',
       date: '2025-07-28',
       dateLabel: '28 Jul 2025',
       icon: starSm,

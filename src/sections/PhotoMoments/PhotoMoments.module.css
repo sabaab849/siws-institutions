@@ -1,0 +1,43 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-placeholder);
+}
+
+/* The first photograph runs across both columns on phones */
+.item[data-lead] {
+  grid-column: span 2;
+}
+
+.item[data-lead] .image {
+  aspect-ratio: 3 / 2;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .item[data-lead] {
+    grid-row: span 2;
+  }
+
+  .item[data-lead] .image {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+}

@@ -50,3 +50,25 @@
     align-items: start;
   }
 }
+
+/* Leads on to the activities section */
+/* The section title, with its link to the activities pages beside it */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .head {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-10);
+  }
+
+  /* The link keeps its own width in a column; line it up with the eyebrow */
+  .head > a {
+    align-self: baseline;
+  }
+}

@@ -1,21 +1,28 @@
+/* Heading steps of the type scale */
 .title {
-  font-weight: var(--weight-bold);
+  font-family: var(--font-sans);
+  text-wrap: balance; /* no single word left alone on the last line */
 }
 
+/* heading-md */
 .lg {
-  font-size: var(--text-h2);
+  font-size: var(--type-heading-md-size);
+  font-weight: var(--type-heading-md-weight);
+  line-height: var(--type-heading-md-leading);
+  letter-spacing: var(--type-heading-md-tracking);
 }
 
+/* heading-lg */
 .xl {
-  font-size: var(--text-h2-lg);
+  font-size: var(--type-heading-lg-size);
+  font-weight: var(--type-heading-lg-weight);
+  line-height: var(--type-heading-lg-leading);
+  letter-spacing: var(--type-heading-lg-tracking);
 }
 
-.normal {
-  line-height: normal;
-}
-
+/* The scale sets the line height; `tight` is kept for titles of three lines or more */
 .tight {
-  line-height: var(--leading-heading);
+  line-height: var(--leading-tight);
 }
 
 .default {

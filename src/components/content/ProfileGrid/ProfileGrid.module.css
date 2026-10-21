@@ -1,0 +1,58 @@
+/*
+ * Phones: cards that carry only a name and a designation read two abreast, so a
+ * long roll of trustees stays scrollable. Cards that carry a profile as well —
+ * the founders — take the full width instead, since a paragraph in half a
+ * phone's width wraps every three or four words.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wide {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  /* A full-width card can carry reading sizes rather than caption ones */
+  --profile-name-size: var(--text-h4);
+  --profile-bio-size: var(--text-body);
+}
+
+/* From 600px two profiles sit side by side again, at their usual sizes */
+@media (min-width: 600px) {
+  .wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-6);
+    --profile-name-size: var(--text-h5);
+    --profile-bio-size: var(--text-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .default {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-10);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: var(--space-10) var(--space-8);
+  }
+
+  .default {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .wide {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+

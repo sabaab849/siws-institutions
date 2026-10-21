@@ -1,0 +1,461 @@
+/* Facts under the opening paragraph: four short pairs on one rule */
+.facts {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.factLabel {
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  letter-spacing: var(--type-caption-lg-tracking);
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.factValue {
+  margin: 0;
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-heading);
+}
+
+/* What we teach: one card per strand, its subjects on hairlines */
+.strands,
+.course,
+.year,
+.steps,
+.gallery {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.strand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-surface);
+}
+
+.strandTitle {
+  font-size: var(--type-subhead-lg-size);
+  font-weight: var(--type-subhead-lg-weight);
+  line-height: var(--type-subhead-lg-leading);
+  letter-spacing: var(--type-subhead-lg-tracking);
+  color: var(--color-heading);
+}
+
+.strandSummary {
+  font-size: var(--type-caption-sm-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.subjects {
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subject {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.subjectHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+}
+
+.subjectName {
+  font-size: var(--type-body-md-size);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+.subjectStandards {
+  font-size: var(--type-caption-sm-size);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.subjectTeacher {
+  font-size: var(--type-caption-sm-size);
+  line-height: var(--type-caption-sm-leading);
+  color: var(--color-body);
+}
+
+/* The course: three plain statements, divided by rules rather than boxes */
+.courseItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.courseTitle {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-heading);
+}
+
+.courseText {
+  font-size: var(--type-body-md-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* The year: five dated stops, read left to right on a wide screen */
+.moment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--color-rule-strong);
+}
+
+.momentMonth {
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  letter-spacing: var(--type-caption-lg-tracking);
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.momentTitle {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-heading);
+}
+
+.momentDetail {
+  font-size: var(--type-caption-sm-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* Recognition: one prize carried large, the rest as a short record */
+.prizes {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.prizeFeature,
+.prizeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-8);
+  border-radius: var(--radius-2xl);
+}
+
+.prizeFeature {
+  gap: var(--space-3);
+  background-color: var(--color-brand);
+  color: var(--color-on-brand-soft);
+}
+
+/* The competition, then the award it won, then the detail */
+.prizeEvent {
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  line-height: var(--type-caption-lg-leading);
+  letter-spacing: var(--type-caption-lg-tracking);
+  text-transform: uppercase;
+  color: var(--color-on-brand-soft);
+}
+
+.prizeAward {
+  max-width: 16ch;
+  text-wrap: balance;
+  font-size: var(--type-heading-md-size);
+  font-weight: var(--type-heading-md-weight);
+  line-height: var(--type-heading-md-leading);
+  letter-spacing: var(--type-heading-md-tracking);
+  color: var(--color-on-brand);
+}
+
+.prizeList {
+  border: var(--border-width) solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.prizeTitle {
+  font-size: var(--type-subhead-lg-size);
+  font-weight: var(--type-subhead-lg-weight);
+  line-height: var(--type-subhead-lg-leading);
+  letter-spacing: var(--type-subhead-lg-tracking);
+  color: var(--color-heading);
+}
+
+.prizeFeature .prizeTitle {
+  color: var(--color-on-brand);
+}
+
+.prizeText {
+  max-width: 44ch;
+  margin-top: var(--space-2);
+  font-size: var(--type-body-md-size);
+  line-height: var(--leading-body);
+}
+
+.gita {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.gitaRow {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.gitaYear {
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  letter-spacing: var(--type-caption-lg-tracking);
+  color: var(--color-brand);
+}
+
+.gitaText {
+  margin: 0;
+  font-size: var(--type-body-md-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* The gallery, as on the other institution pages */
+.photo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.photoFrame {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-placeholder);
+}
+
+.photoImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .photo:hover .photoImage {
+    transform: scale(1.04);
+  }
+}
+
+.photoCaption {
+  font-size: var(--type-caption-sm-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* Joining: three numbered steps, with the Centre's own contact beside them */
+.joinLayout {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-standard);
+}
+
+/* A card lifts a little under the cursor, and settles back */
+@media (hover: hover) and (pointer: fine) {
+  .step:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    transition: none;
+  }
+
+  .step:hover {
+    transform: none;
+  }
+}
+
+.stepNumber {
+  font-family: var(--font-heading, var(--font-sans));
+  font-size: var(--text-numeral);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--color-rule-quote);
+}
+
+.stepTitle {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-heading);
+}
+
+.stepText {
+  font-size: var(--type-body-md-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-bg-warm);
+}
+
+.contactLabel {
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  letter-spacing: var(--type-caption-lg-tracking);
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.contactName {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  color: var(--color-heading);
+}
+
+.contactRole {
+  font-size: var(--type-caption-sm-size);
+  color: var(--color-body);
+}
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  font-size: var(--type-body-md-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-brand);
+}
+
+.contactLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.contactLinks a:hover {
+  color: var(--color-heading);
+}
+
+@media (min-width: 640px) {
+  .facts,
+  .course,
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .year {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contactLinks a {
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .strands {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .course {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+
+  .year {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .prizes {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--space-8);
+  }
+
+  .prizeFeature {
+    padding: var(--space-10);
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-6);
+  }
+
+  .joinLayout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8);
+  }
+}

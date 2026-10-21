@@ -1,5 +1,6 @@
 import { ActivityCard } from '../../components/content/ActivityCard/ActivityCard';
 import { Container } from '../../components/layout/Container/Container';
+import { ButtonLink } from '../../components/ui/Button/ButtonLink';
 import { SectionHeader } from '../../components/ui/SectionHeader/SectionHeader';
 import { campusLife } from '../../data/campusLife';
 import styles from './CampusLife.module.css';
@@ -10,11 +11,16 @@ export function CampusLife() {
   return (
     <section id="activities" className={styles.campus} aria-labelledby="activities-title">
       <Container className={styles.inner}>
-        <SectionHeader
-          eyebrow={campusLife.eyebrow}
-          title={campusLife.title}
-          titleId="activities-title"
-        />
+        <div className={styles.head}>
+          <SectionHeader
+            eyebrow={campusLife.eyebrow}
+            title={campusLife.title}
+            titleId="activities-title"
+          />
+          <ButtonLink to="/activities" variant="link">
+            Explore activities
+          </ButtonLink>
+        </div>
 
         <div className={styles.grid}>
           <ActivityCard layout="feature" {...feature} />

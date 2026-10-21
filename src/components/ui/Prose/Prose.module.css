@@ -1,0 +1,32 @@
+/* body-md */
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 68ch;
+  font-size: var(--type-body-md-size);
+  line-height: var(--type-body-md-leading);
+  color: var(--color-body);
+}
+
+/* body-lg */
+.lead {
+  font-size: var(--type-body-lg-size);
+  line-height: var(--type-body-lg-leading);
+}
+
+.prose strong {
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+.prose a {
+  color: var(--color-brand);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1023.98px) {
+  .prose {
+    text-wrap: pretty;
+  }
+}

@@ -1,0 +1,77 @@
+.openings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.opening {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: calc(var(--space-6) - var(--border-width));
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+}
+
+.position {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.meta,
+.description {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.apply {
+  align-self: flex-start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-brand);
+}
+
+/* Shown while the Society has no vacancies to advertise */
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 62ch;
+  padding: var(--space-10) var(--space-8);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  text-align: center;
+  align-items: center;
+}
+
+.emptyTitle {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+.emptyText {
+  color: var(--color-body);
+}
+
+/* Where the listed vacancies come from */
+.source {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+.source a {
+  color: var(--color-brand);
+}

@@ -3,9 +3,29 @@
   background-color: var(--color-bg);
 }
 
+/* Phones and tablets: one column, each row carrying its own photograph */
 .inner {
   display: grid;
   gap: var(--space-12);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+/* The label and the link to the institutions pages, on one line */
+.introTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.introTop > a {
+  align-self: center;
 }
 
 .intro {
@@ -21,82 +41,62 @@
   color: var(--color-faint);
 }
 
-/* Figma draws the top line just above the first row */
-.index {
-  position: relative;
-  margin-top: calc(-1 * var(--border-width));
-}
-
 .list {
+  margin-top: calc(-1 * var(--border-width));
   border-top: var(--border-width) solid var(--color-border);
 }
 
-/* Only mouse users get the hover preview; touch rows carry their own photos */
-.preview {
-  display: none;
-}
-
 /*
- * Wide screens: editorial column beside the index, about 40 / 60. Narrower
- * than 84rem (so a 1366px laptop still qualifies), the index would be too
- * narrow for its text and the preview, so the intro sits above it instead.
+ * Desktop: the card on the left holds the institution under the cursor and
+ * stays with the list as it is read; the list keeps the wider column, since it
+ * carries the names.
  */
-@media (min-width: 84rem) {
+@media (min-width: 1024px) {
   .inner {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     align-items: start;
-    column-gap: var(--space-16);
+    gap: var(--space-16);
+  }
+
+  .visual {
+    position: sticky;
+    /* Clear of the header, which follows the page down */
+    top: calc(var(--header-h) + var(--space-10));
+  }
+
+  .card {
+    aspect-ratio: 4 / 5;
+  }
+
+  .column {
+    gap: var(--space-10);
   }
 }
 
-/*
- * The preview rides in a lane at the right of the list, 16px left of the rows'
- * 18px arrows, centred on the hovered row. Rows keep their text out of the lane
- * (see InstitutionRow): their 32px gap before the arrow plus the lane leaves
- * 24px between text and image.
- */
-@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
-  .index {
-    --preview-w: clamp(240px, 20vw - 32px, 256px); /* 256px at 1440 */
-    --preview-lane: calc(var(--preview-w) + var(--space-2));
-  }
-
-  .preview {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: calc(18px + var(--space-4));
-    z-index: 1;
-    width: var(--preview-w);
-    aspect-ratio: 10 / 7; /* 256 × 180 */
+@media (min-width: 1280px) {
+  .inner {
+    gap: var(--space-20);
   }
 }
 
-/* Entrance: the intro rises into place, then the rows follow one by one */
+/* The section arrives once, as a whole, the rows a beat behind one another */
 @media (prefers-reduced-motion: no-preference) {
-  .institutions[data-state='hidden'] :is(.intro, .list > li) {
+  .institutions[data-state='hidden'] .visual,
+  .institutions[data-state='hidden'] .intro,
+  .institutions[data-state='hidden'] .list > li {
     opacity: 0;
+    transform: translateY(12px);
   }
 
-  .institutions[data-state='shown'] .intro {
-    animation: intro-in var(--duration-enter) var(--ease-out) backwards;
+  .institutions[data-state='shown'] .visual,
+  .institutions[data-state='shown'] .intro,
+  .institutions[data-state='shown'] .list > li {
+    transition:
+      opacity var(--duration-enter) var(--ease-out),
+      transform var(--duration-enter) var(--ease-out);
   }
 
   .institutions[data-state='shown'] .list > li {
-    animation: row-in var(--duration-enter) var(--ease-out) calc(150ms + var(--row) * 90ms) backwards;
-  }
-}
-
-@keyframes intro-in {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-}
-
-@keyframes row-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+    transition-delay: calc(var(--row, 0) * 60ms);
   }
 }

@@ -1,0 +1,283 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-12);
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-16);
+    align-items: start;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.detailsHeading {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.address {
+  max-width: 40ch;
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* Name, address, then the directory of who to write to */
+.directory {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.directoryHeading {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-ink);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  margin: 0;
+}
+
+/* Two abreast once there is room, so the roll does not run down the page */
+@media (min-width: 480px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-8);
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: var(--text-micro);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-body);
+}
+
+.entryName {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.value {
+  margin: 0;
+  max-width: 40ch;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-heading);
+}
+
+.value a {
+  color: var(--color-brand);
+}
+
+/* Each address sits on its own line */
+.email {
+  display: block;
+}
+
+.pending {
+  color: var(--color-body);
+}
+
+/* Google's map of the Wadala address, with the directions link beneath it */
+.map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-12) 0 0;
+}
+
+.mapFrame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 15rem;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-placeholder);
+}
+
+.mapCaption a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-brand);
+}
+
+.mapCaption a::after {
+  content: '↗';
+  margin-left: var(--space-2);
+}
+
+/* Wide screens: the map reads as a band under the two columns */
+@media (min-width: 1024px) {
+  .mapFrame {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/*
+ * The enquiry form, under the directory. The field styles are as they were;
+ * the asterisks, the note and the messages under a field are new.
+ */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 44rem;
+  padding: calc(var(--space-8) - var(--border-width));
+  border: var(--border-width) solid var(--color-border-soft);
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.formHeading {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+}
+
+/* The mark on a label the Society needs filled in, and the note that explains it */
+.required {
+  color: var(--color-accent-text);
+}
+
+.requiredNote {
+  margin-top: calc(-1 * var(--space-2));
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.fieldLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-heading);
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  font: inherit;
+  font-size: var(--text-sm);
+  color: var(--color-heading);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 1px;
+}
+
+/* A field the form could not accept, and what is wrong with it */
+.input[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.input[aria-invalid='true']:focus-visible {
+  outline-color: var(--color-error);
+}
+
+.error {
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-error);
+}
+
+textarea.input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.submit {
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: color-mix(in srgb, var(--color-accent), black 8%);
+}
+
+.formNote {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+@media (min-width: 640px) {
+  .pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Fitts: on touch screens the numbers and addresses in the directory carry an
+ * invisible 44px target, so each line can stay as it reads.
+ */
+@media (pointer: coarse) {
+  .value a {
+    position: relative;
+  }
+
+  .value a::after {
+    content: '';
+    position: absolute;
+    inset: -13px -6px;
+  }
+
+  /* Two addresses stacked need room, so each target belongs to one line */
+  .value .email + .email {
+    margin-top: var(--space-6);
+  }
+}

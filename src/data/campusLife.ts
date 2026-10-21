@@ -10,8 +10,8 @@ import hikeSmall from '../assets/photos/hike-800.webp';
 import sportsSmall from '../assets/photos/sports-800.webp';
 
 export const campusLife = {
-  eyebrow: 'Campus Life',
-  title: 'Beyond the classroom.',
+  eyebrow: 'Society Activities',
+  title: 'Beyond Education.',
   feature: {
     category: 'Academic Development',
     title: 'Fostering Intellectual Discovery & Research',

@@ -1,7 +1,7 @@
 import illustration from '../../assets/hero-illustration.svg';
-import { QuoteBlock } from '../../components/content/QuoteBlock/QuoteBlock';
 import { Stat } from '../../components/content/Stat/Stat';
 import { Container } from '../../components/layout/Container/Container';
+import { ButtonLink } from '../../components/ui/Button/ButtonLink';
 import { Eyebrow } from '../../components/ui/Eyebrow/Eyebrow';
 import { hero } from '../../data/hero';
 import { useInViewOnce } from '../../hooks/useInViewOnce';
@@ -21,12 +21,17 @@ export function Hero() {
             {withLineBreaks(hero.titleLines)}
           </h1>
           <p className={styles.intro}>{hero.intro}</p>
-          <QuoteBlock
-            className={styles.quote}
-            quote={hero.quote}
-            translation={hero.translation}
-            lang="sa-Latn"
-          />
+          <p className={styles.ctas}>
+            <ButtonLink to={hero.ctas.primary.to} size="lg">
+              {hero.ctas.primary.label}
+            </ButtonLink>
+            <ButtonLink to={hero.ctas.secondary.to} variant="quiet" size="lg">
+              {hero.ctas.secondary.label}
+            </ButtonLink>
+            <ButtonLink to={hero.ctas.tertiary.to} variant="quiet" size="lg">
+              {hero.ctas.tertiary.label}
+            </ButtonLink>
+          </p>
         </div>
 
         <div className={styles.art}>

@@ -31,6 +31,7 @@
   --color-faint: #cccccc;
   --color-brand-muted: #6f72a6; /* quiet blue, 4:1 on light backgrounds */
   --color-accent-text: #c77700; /* orange that keeps 3:1 as large text */
+  --color-error: #b3261e; /* form errors; 6.4:1 on white, so it reads at 14px */
 
   /* Colour: borders & rules */
   --color-border: #dfe0e8;
@@ -45,6 +46,11 @@
   --color-on-brand: #ffffff;
   --color-on-brand-soft: #eeeef8;
   --color-on-brand-quote: rgb(255 255 255 / 0.65);
+  --color-on-brand-muted: rgb(255 255 255 / 0.6); /* labels on the brand band */
+  /* Chips on the brand band: a touch of white over the navy */
+  --glass-on-brand-bg: rgb(255 255 255 / 0.07);
+  --glass-on-brand-border: rgb(255 255 255 / 0.14);
+  --glass-on-brand-hover: rgb(255 255 255 / 0.34);
   --color-on-brand-rule-30: rgb(255 255 255 / 0.3);
   --color-on-brand-rule-15: rgb(255 255 255 / 0.15);
   --color-on-brand-rule-12: rgb(255 255 255 / 0.125);
@@ -57,22 +63,26 @@
    */
   --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  /* Typography: sizes (responsive ones step up at the breakpoints below) */
-  --text-display: 5.5rem; /* 88 */
+  /*
+   * Typography: sizes. The scale has three steps — phone here, then tablet
+   * (640px) and desktop (1024px) in the blocks at the foot of this file. A size
+   * written once is the same at every width; the comment shows the steps.
+   */
+  --text-display: 2.5rem; /* 40 → 56 → 88 */
   /* Phone sizes ease down on the narrowest screens (320px) so headings don't break into extra lines */
   --text-h2-lg: clamp(2rem, 9.5vw, 2.25rem); /* 36 → 44 → 56 */
   --text-h2: clamp(1.75rem, 8.5vw, 2rem); /* 32 → 40 → 48 */
   --text-quote: clamp(1.5rem, 7.5vw, 1.75rem); /* 28 → 44 → 56 */
-  --text-stat-xl: 3.5rem; /* 56 → 64 → 80 */
-  --text-stat-lg: 2.5rem; /* 40 → 44 → 48 */
-  --text-stat-md: 2.5rem; /* 40 */
+  --text-stat-xl: 2.5rem; /* 40 → 64 → 80 */
+  --text-stat-lg: 2rem; /* 32 → 44 → 48 */
+  --text-stat-md: 2rem; /* 32 → 40 */
   --text-stat-sm: 2rem; /* 32 */
-  --text-year: 2.25rem; /* 36 */
-  --text-numeral: 1.75rem; /* 28 */
-  --text-h3: 1.5rem; /* 24 */
-  --text-h4: 1.375rem; /* 22 */
+  --text-year: 1.75rem; /* 28 → 36 */
+  --text-numeral: 1.5rem; /* 24 → 28 */
+  --text-h3: 1.375rem; /* 22 → 24 */
+  --text-h4: 1.25rem; /* 20 → 22 */
   --text-h5: 1.125rem; /* 18 */
-  --text-lead: 1.25rem; /* 20 */
+  --text-lead: 1.125rem; /* 18 → 20 */
   --text-body: 1rem; /* 16 */
   --text-body-sm: 0.9375rem; /* 15 */
   --text-sm: 0.875rem; /* 14 */
@@ -108,10 +118,68 @@
   --tracking-caps: 0.12em;
   --tracking-overline: 0.18em;
 
+  /*
+   * Type scale. Four levels, two steps each, all in DM Sans: the larger step
+   * opens a page or a section, the smaller one works inside it. Sizes that
+   * scale with the screen reuse the responsive tokens above.
+   *
+   *   heading-lg    56px / bold       page and hero titles
+   *   heading-md    48px / bold       section titles
+   *   subhead-lg    24px / semibold   block headings, feature cards
+   *   subhead-sm    18px / semibold   row titles, card titles
+   *   body-lg       20px / regular    section intros and leads
+   *   body-md       16px / regular    running text
+   *   caption-lg    14px / semibold   uppercase labels above headings
+   *   caption-sm    13px / medium     meta lines, captions, details
+   *
+   * Each step carries a size, weight, line height and tracking; set all four
+   * together so the hierarchy holds wherever the step is used.
+   */
+  --type-heading-lg-size: var(--text-h2-lg);
+  --type-heading-lg-weight: var(--weight-bold);
+  --type-heading-lg-leading: 1.08;
+  --type-heading-lg-tracking: -0.02em;
+
+  --type-heading-md-size: var(--text-h2);
+  --type-heading-md-weight: var(--weight-bold);
+  --type-heading-md-leading: var(--leading-heading);
+  --type-heading-md-tracking: -0.015em;
+
+  --type-subhead-lg-size: var(--text-h3);
+  --type-subhead-lg-weight: var(--weight-semibold);
+  --type-subhead-lg-leading: 1.3;
+  --type-subhead-lg-tracking: -0.01em;
+
+  --type-subhead-sm-size: var(--text-h5);
+  --type-subhead-sm-weight: var(--weight-semibold);
+  --type-subhead-sm-leading: var(--leading-snug);
+  --type-subhead-sm-tracking: 0em;
+
+  --type-body-lg-size: var(--text-lead);
+  --type-body-lg-weight: var(--weight-regular);
+  --type-body-lg-leading: var(--leading-body);
+  --type-body-lg-tracking: 0em;
+
+  --type-body-md-size: var(--text-body);
+  --type-body-md-weight: var(--weight-regular);
+  --type-body-md-leading: var(--leading-body);
+  --type-body-md-tracking: 0em;
+
+  --type-caption-lg-size: var(--text-sm);
+  --type-caption-lg-weight: var(--weight-semibold);
+  --type-caption-lg-leading: var(--leading-snug);
+  --type-caption-lg-tracking: 0.08em;
+
+  --type-caption-sm-size: var(--text-xs);
+  --type-caption-sm-weight: var(--weight-medium);
+  --type-caption-sm-leading: var(--leading-snug);
+  --type-caption-sm-tracking: 0.02em;
+
   /* Spacing (the number is the multiple of 4px) */
   --space-1: 0.25rem; /* 4 */
   --space-1-5: 0.375rem; /* 6 */
   --space-2: 0.5rem; /* 8 */
+  --space-2-5: 0.625rem; /* 10 */
   --space-3: 0.75rem; /* 12 */
   --space-4: 1rem; /* 16 */
   --space-5: 1.25rem; /* 20 */
@@ -135,8 +203,9 @@
   --container-max: 80rem; /* 1280 content width */
   --header-max: 84rem; /* 1344 header content width */
   --header-h: 3.75rem; /* 60 */
-  --gutter: var(--space-5);
-  --header-gutter: var(--space-5);
+  /* Side padding: 24 on phones, 40 on tablets, 80 on desktop */
+  --gutter: var(--space-6);
+  --header-gutter: var(--space-6);
   --section-y: var(--space-12); /* space above and below each section: 48 → 64 → 80 */
 
   /* Borders & radii */
@@ -178,11 +247,18 @@
     --header-gutter: var(--space-10);
     --section-y: var(--space-16);
 
+    --text-display: 3.5rem;
     --text-h2-lg: 2.75rem;
     --text-h2: 2.5rem;
     --text-quote: 2.75rem;
     --text-stat-xl: 4rem;
     --text-stat-lg: 2.75rem;
+    --text-stat-md: 2.5rem;
+    --text-year: 2.25rem;
+    --text-numeral: 1.75rem;
+    --text-h3: 1.5rem;
+    --text-h4: 1.375rem;
+    --text-lead: 1.25rem;
   }
 }
 
@@ -193,6 +269,7 @@
     --section-y: var(--space-20);
 
     /* 56px / 48px at 1440px, scaling with the two-column layouts below that */
+    --text-display: 5.5rem;
     --text-h2-lg: min(3.5rem, calc(4.375vw - 7px));
     --text-h2: min(3rem, calc(3.75vw - 6px));
     --text-quote: 3.5rem;

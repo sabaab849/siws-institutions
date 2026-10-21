@@ -9,10 +9,10 @@ import yogaSmall from '../assets/photos/yoga-800.webp';
 
 export const inFocus = {
   eyebrow: 'In Focus',
-  title: 'Stories from our campuses.',
+  title: 'Stories From Our Campuses.',
   press: {
     label: 'In the News',
-    title: 'Ashadhi Ekadashi celebration at SIWS',
+    title: 'Ashadhi Ekadashi Celebration at SIWS',
     excerpt:
       'SIWS English Primary School, Matunga, marked Ashadhi Ekadashi with a Wari Palkhi procession led by its students, dressed as Warkaris, carrying saffron flags and Tulsi, and singing devotional songs.',
     source: 'Hindustan Times · Kaleidoscope',

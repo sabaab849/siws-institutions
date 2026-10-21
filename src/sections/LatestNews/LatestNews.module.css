@@ -1,0 +1,176 @@
+/* Phones: one item under another, separated by a rule rather than a card */
+.items {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+/* The photograph the section published with the item */
+.frame {
+  display: block;
+  overflow: hidden;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-placeholder);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  /* Set per photograph where the crop would otherwise lose faces */
+  object-position: var(--photo-position, 50% 50%);
+  transition: transform 600ms var(--ease-out);
+}
+
+/* Stands where a photograph would be, so the items keep a common line */
+.frame[data-label] {
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 3 / 2;
+  padding: var(--space-4);
+  background-color: var(--color-tint-lavender);
+}
+
+.labelWord {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-rule-quote);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .item:hover .image {
+    transform: scale(1.03);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-micro);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.institution {
+  color: var(--color-brand);
+}
+
+.date {
+  color: var(--color-body);
+}
+
+.title {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.title a {
+  color: inherit;
+}
+
+.title a:hover {
+  color: var(--color-brand);
+}
+
+/* The arrow marks the link as leaving for the institution's own site */
+.title a::after {
+  content: ' ↗';
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.text {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/*
+ * Tablets: the institution and date sit in a column of their own, so the
+ * headlines all start at the same place down the page.
+ */
+@media (min-width: 640px) and (max-width: 767.98px) {
+  .item {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    column-gap: var(--space-8);
+    align-items: baseline;
+  }
+
+  /* Photo, headline and summary share one column, so their edges line up */
+  .frame,
+  .title,
+  .text {
+    grid-column: 2;
+  }
+
+  .meta {
+    flex-direction: column;
+    grid-column: 1;
+    grid-row: 2 / span 2;
+  }
+}
+
+/* Tablets: two across */
+@media (min-width: 768px) {
+  .items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-6);
+  }
+}
+
+/* Desktop: one section after another, reading across */
+@media (min-width: 1024px) {
+  .items {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .item {
+    padding-top: var(--space-6);
+  }
+}
+
+/*
+ * From tablets the items stand side by side, so the headline and the summary
+ * are held to a common depth rather than one card running twice as deep as
+ * its neighbour. The item in full is on the institution's own page.
+ */
+@media (min-width: 768px) {
+  .title,
+  .text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .title {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .text {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}

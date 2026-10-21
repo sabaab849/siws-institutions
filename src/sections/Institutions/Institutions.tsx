@@ -1,71 +1,48 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { InstitutionPreview } from '../../components/content/InstitutionPreview/InstitutionPreview';
+import { useState, type CSSProperties } from 'react';
+import {
+  InstitutionPreviewCard,
+  type PreviewCardItem,
+} from '../../components/content/InstitutionPreviewCard/InstitutionPreviewCard';
 import { InstitutionRow } from '../../components/content/InstitutionRow/InstitutionRow';
 import { Container } from '../../components/layout/Container/Container';
+import { ButtonLink } from '../../components/ui/Button/ButtonLink';
 import { Eyebrow } from '../../components/ui/Eyebrow/Eyebrow';
 import { SectionTitle } from '../../components/ui/SectionTitle/SectionTitle';
+import { institutionHeroes } from '../../data/institutionHeroes';
 import { institutions } from '../../data/institutions';
 import { useInViewOnce } from '../../hooks/useInViewOnce';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { withLineBreaks } from '../../utils/withLineBreaks';
 import styles from './Institutions.module.css';
 
-/** A closed preview keeps its last image this long (its fade-out), then resets so the next opens cleanly. */
-const PREVIEW_RESET_MS = 400;
+/**
+ * Where the preview card is shown (matches Institutions.module.css). Below it
+ * each row carries its own photograph, so a touch screen downloads thumbnails
+ * rather than six full-size pictures.
+ */
+const PREVIEW_QUERY = '(min-width: 1024px)';
+
+/** The card's content, taken from what the Society already publishes. */
+const PREVIEW_ITEMS: PreviewCardItem[] = institutions.items.map((item) => {
+  const hero = institutionHeroes[item.slug];
+  return {
+    key: item.index,
+    tag: item.category ?? hero?.type,
+    stats: item.details,
+    established: hero?.established,
+    visual: item.visual,
+  };
+});
 
 /**
- * Where the shared hover preview is shown (matches Institutions.module.css).
- * Elsewhere it isn't rendered, so touch screens don't download its photos.
+ * The path through the Society's institutions: the list on the right, and the
+ * institution under the cursor held in the card on the left. With no cursor on
+ * the list it rests on the first institution.
  */
-const HOVER_PREVIEW_QUERY = '(min-width: 1024px) and (hover: hover) and (pointer: fine)';
-
-type PreviewState = {
-  active: number | null;
-  open: boolean;
-  follow: boolean;
-  y: number;
-};
-
-/** Centres the preview on a row, kept within the list. */
-function offsetForRow(list: HTMLElement | null, preview: HTMLElement | null, index: number) {
-  const row = list?.querySelectorAll<HTMLElement>(':scope > ol > li')[index];
-  if (!list || !preview || !row) return 0;
-  const centred = row.offsetTop + (row.offsetHeight - preview.offsetHeight) / 2;
-  return Math.min(Math.max(centred, 0), list.offsetHeight - preview.offsetHeight);
-}
-
-/** Which row the desktop preview shows, where it sits, and whether it is open. */
-function usePreview() {
-  const listRef = useRef<HTMLDivElement>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<PreviewState>({ active: null, open: false, follow: false, y: 0 });
-  const resetTimer = useRef(0);
-
-  useEffect(() => () => window.clearTimeout(resetTimer.current), []);
-
-  const show = (active: number) => {
-    window.clearTimeout(resetTimer.current);
-    const y = offsetForRow(listRef.current, previewRef.current, active);
-    // Slide only while the last image is still on screen; otherwise appear at the row.
-    setState((current) => ({ active, open: true, follow: current.active !== null, y }));
-  };
-
-  const close = () => {
-    setState((current) => ({ ...current, open: false }));
-    window.clearTimeout(resetTimer.current);
-    resetTimer.current = window.setTimeout(
-      () => setState((current) => (current.open ? current : { ...current, active: null, follow: false })),
-      PREVIEW_RESET_MS,
-    );
-  };
-
-  return { ...state, listRef, previewRef, show, close };
-}
-
 export function Institutions() {
   const [sectionRef, inView] = useInViewOnce<HTMLElement>();
-  const preview = usePreview();
-  const canPreview = useMediaQuery(HOVER_PREVIEW_QUERY);
+  const [active, setActive] = useState(0);
+  const showCard = useMediaQuery(PREVIEW_QUERY);
 
   return (
     <section
@@ -76,43 +53,50 @@ export function Institutions() {
       data-state={inView ? 'shown' : 'hidden'}
     >
       <Container className={styles.inner}>
-        <div className={styles.intro}>
-          <Eyebrow>{institutions.eyebrow}</Eyebrow>
-          <SectionTitle id="institutions-title" leading="tight">
-            {withLineBreaks(institutions.titleLines)}
-          </SectionTitle>
-          <p className={styles.lead}>{institutions.intro}</p>
-        </div>
+        {showCard && (
+          <div className={styles.visual}>
+            <InstitutionPreviewCard
+              className={styles.card}
+              items={PREVIEW_ITEMS}
+              active={active}
+            />
+          </div>
+        )}
 
-        <div ref={preview.listRef} className={styles.index}>
+        <div className={styles.column}>
+          <div className={styles.introTop}>
+            <Eyebrow>{institutions.eyebrow}</Eyebrow>
+            <ButtonLink to="/institutions" variant="link">
+              View all institutions
+            </ButtonLink>
+          </div>
+
+          <div className={styles.intro}>
+            <SectionTitle id="institutions-title" leading="tight">
+              {withLineBreaks(institutions.titleLines)}
+            </SectionTitle>
+            <p className={styles.lead}>{institutions.intro}</p>
+          </div>
+
           <ol
             role="list"
             className={styles.list}
-            onPointerLeave={preview.close}
+            // Off the list, the card returns to the first institution
+            onPointerLeave={() => setActive(0)}
             onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) preview.close();
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setActive(0);
             }}
           >
             {institutions.items.map((item, index) => (
               <InstitutionRow
                 key={item.index}
                 {...item}
-                onActivate={() => preview.show(index)}
+                active={index === active}
+                onActivate={() => setActive(index)}
                 style={{ '--row': index } as CSSProperties}
               />
             ))}
           </ol>
-          {canPreview && (
-            <InstitutionPreview
-              ref={preview.previewRef}
-              className={styles.preview}
-              items={institutions.items}
-              active={preview.active}
-              open={preview.open}
-              follow={preview.follow}
-              y={preview.y}
-            />
-          )}
         </div>
       </Container>
     </section>

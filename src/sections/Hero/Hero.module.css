@@ -7,7 +7,8 @@
 .body {
   display: grid;
   gap: var(--space-12);
-  padding-top: var(--space-12);
+  /* The lower padding keeps the buttons clear of the figures band below */
+  padding-block: var(--space-12) var(--space-10);
 }
 
 .copy {
@@ -26,16 +27,19 @@
   color: var(--color-ink);
 }
 
+/* body-lg: the opening paragraph carries more weight than running text */
 .intro {
   max-width: 520px;
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--type-body-lg-weight);
+  line-height: var(--type-body-lg-leading);
   color: var(--color-body);
 }
 
-.quote {
-  width: 100%;
-  max-width: 520px;
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .art {
@@ -62,25 +66,28 @@
 }
 
 /*
- * Phones: a tighter vertical rhythm, so the title, quote and illustration
- * share the first screen and the figures follow straight after.
+ * Phones: a tighter vertical rhythm, so the title and illustration share the
+ * first screen and the figures follow straight after.
  */
 @media (max-width: 639.98px) {
   .body {
     gap: var(--space-8);
-    padding-top: var(--space-8);
+    padding-block: var(--space-8);
   }
 
   .copy {
     gap: var(--space-5);
   }
 
-  .quote {
-    min-height: 0;
-  }
-
   .stats {
     row-gap: var(--space-7);
+  }
+}
+
+/* Tablets: three figures to a row */
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -90,7 +97,7 @@
     grid-template-columns: 59.375% minmax(0, 1fr); /* 760px of 1280px */
     column-gap: 5.625%; /* 72px of 1280px */
     align-items: start;
-    padding-top: var(--space-14);
+    padding-block: var(--space-14);
   }
 
   .title {
@@ -109,8 +116,9 @@
     max-width: none;
   }
 
+  /* Five figures across the full content width */
   .stats {
-    grid-template-columns: repeat(4, minmax(0, 240px));
-    justify-content: space-between;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: var(--space-6);
   }
 }

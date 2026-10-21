@@ -80,3 +80,8 @@
     padding-top: var(--space-2);
   }
 }
+
+/* Leads on to the full story page */
+.cta {
+  align-self: flex-start;
+}

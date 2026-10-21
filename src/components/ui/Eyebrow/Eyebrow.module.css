@@ -1,25 +1,37 @@
+/* Caption steps of the type scale, set in caps */
 .eyebrow {
   font-family: var(--font-sans);
-  font-weight: var(--weight-semibold);
-  line-height: normal;
   text-transform: uppercase;
 }
 
+/* caption-lg: the label above a section heading */
 .section {
-  font-size: var(--text-label);
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  line-height: var(--type-caption-lg-leading);
+  letter-spacing: var(--type-caption-lg-tracking);
 }
 
+/* caption-lg, tracked wider where the label stands on its own */
 .spaced {
-  font-size: var(--text-label);
+  font-size: var(--type-caption-lg-size);
+  font-weight: var(--type-caption-lg-weight);
+  line-height: var(--type-caption-lg-leading);
   letter-spacing: var(--tracking-caps);
 }
 
+/* caption-sm: labels inside cards, kept semibold so they hold at this size */
 .card {
-  font-size: var(--text-micro);
+  font-size: var(--type-caption-sm-size);
+  font-weight: var(--weight-semibold);
+  line-height: var(--type-caption-sm-leading);
+  letter-spacing: var(--tracking-nav);
 }
 
 .overline {
-  font-size: var(--text-micro);
+  font-size: var(--type-caption-sm-size);
+  font-weight: var(--weight-semibold);
+  line-height: var(--type-caption-sm-leading);
   letter-spacing: var(--tracking-overline);
 }
 

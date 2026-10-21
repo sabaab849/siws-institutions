@@ -1,0 +1,111 @@
+/* The scholarship figures, read as one line of four */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-rule-strong);
+}
+
+.figureValue {
+  font-size: var(--text-stat-sm);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-none);
+  color: var(--color-ink);
+}
+
+.figureLabel {
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-body);
+}
+
+/* Ways to take part, numbered */
+.ways {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.way {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg);
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-standard);
+}
+
+/* A card lifts a little under the cursor, and settles back */
+@media (hover: hover) and (pointer: fine) {
+  .way:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .way {
+    transition: none;
+  }
+
+  .way:hover {
+    transform: none;
+  }
+}
+
+.wayIndex {
+  font-size: var(--text-micro);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  letter-spacing: var(--tracking-caps);
+  color: var(--color-accent-text);
+}
+
+.wayName {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.wayText {
+  max-width: 48ch;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+@media (min-width: 640px) {
+  .ways {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .figures {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ways {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

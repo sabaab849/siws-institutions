@@ -14,8 +14,10 @@ type InstitutionRowProps = {
   href: string;
   /** Shown in the row on phones and tablets; desktop uses the shared hover preview. */
   visual: Visual;
-  /** Called when the row is hovered or focused, to drive the shared preview. */
+  /** Called when the row is hovered or focused, to drive the preview card. */
   onActivate?: () => void;
+  /** True while the preview card is showing this institution. */
+  active?: boolean;
   style?: CSSProperties;
 };
 
@@ -28,11 +30,24 @@ export function InstitutionRow({
   href,
   visual,
   onActivate,
+  active,
   style,
 }: InstitutionRowProps) {
+  // A row that leaves for the institution's own site opens in its own tab, as
+  // the news items do; the arrow at the end of the row already says so.
+  const leavesSite = /^https?:/.test(href);
+
   return (
     <li style={style}>
-      <a className={styles.row} href={href} onPointerEnter={onActivate} onFocus={onActivate}>
+      <a
+        className={styles.row}
+        data-active={active ? '' : undefined}
+        href={href}
+        target={leavesSite ? '_blank' : undefined}
+        rel={leavesSite ? 'noreferrer' : undefined}
+        onPointerEnter={onActivate}
+        onFocus={onActivate}
+      >
         <span className={styles.index}>{index}</span>
         <div className={styles.content}>
           <h3 className={styles.name}>{name}</h3>

@@ -1,0 +1,122 @@
+/*
+ * Each milestone is one grid row: the year, the rule with its marker, and the
+ * milestone itself. The rule runs the full height of a row, so the segments
+ * join into one line down the list.
+ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * Phones: the rule runs down the left, with the year above the milestone in
+ * the column beside it.
+ */
+.entry {
+  /* Where the marker sits, measured from the top of the row */
+  --dot-centre: 0.95rem;
+  --axis-width: 0.75rem;
+
+  display: grid;
+  grid-template-columns: var(--axis-width) minmax(0, 1fr);
+  grid-template-areas:
+    'axis year'
+    'axis body';
+  column-gap: var(--space-4);
+  row-gap: var(--space-2);
+  padding-bottom: var(--space-10);
+}
+
+.entry:last-child {
+  padding-bottom: 0;
+}
+
+.year {
+  grid-area: year;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+  color: var(--color-accent-text);
+}
+
+/* The rule and its marker, drawn inside their own column */
+.axis {
+  position: relative;
+  grid-area: axis;
+  width: var(--axis-width);
+}
+
+.axis::before {
+  content: '';
+  position: absolute;
+  top: var(--dot-centre);
+  bottom: calc(-1 * var(--space-10));
+  left: 50%;
+  width: var(--border-width);
+  transform: translateX(-50%);
+  background-color: var(--color-border-soft);
+}
+
+.entry:last-child .axis::before {
+  display: none;
+}
+
+.dot {
+  position: absolute;
+  top: var(--dot-centre);
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border: 3px solid var(--color-accent);
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  transform: translate(-50%, -50%);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  grid-area: body;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--type-subhead-sm-size);
+  font-weight: var(--type-subhead-sm-weight);
+  line-height: var(--type-subhead-sm-leading);
+  color: var(--color-heading);
+}
+
+.description {
+  max-width: 58ch;
+  font-size: var(--type-body-md-size);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* Desktop: the year takes a column of its own, right up against the rule */
+@media (min-width: 768px) {
+  .entry {
+    /* Centred on the first line of the title: 18px at 1.4 */
+    --dot-centre: 0.8rem;
+
+    grid-template-columns: minmax(8.125rem, max-content) var(--axis-width) minmax(0, 1fr);
+    grid-template-areas: 'year axis body';
+    align-items: start;
+    column-gap: var(--space-6);
+    padding-bottom: var(--space-12);
+  }
+
+  .entry .axis::before {
+    bottom: calc(-1 * var(--space-12));
+  }
+
+  .year {
+    text-align: right;
+  }
+}

@@ -1,6 +1,6 @@
 import arrowRight from '../../assets/icons/arrow-right-lg.svg';
-import { LinkList } from '../../components/content/LinkList/LinkList';
 import { Container } from '../../components/layout/Container/Container';
+import { ButtonLink } from '../../components/ui/Button/ButtonLink';
 import { Eyebrow } from '../../components/ui/Eyebrow/Eyebrow';
 import { Icon } from '../../components/ui/Icon/Icon';
 import { SectionTitle } from '../../components/ui/SectionTitle/SectionTitle';
@@ -34,9 +34,12 @@ export function Contact() {
               </p>
             </address>
           </div>
-          <LinkList className={styles.column} {...contact.resources} />
-          <LinkList className={styles.column} {...contact.disclosures} />
+
         </div>
+
+        <ButtonLink to="/contact" size="lg" className={styles.cta}>
+          Contact us
+        </ButtonLink>
       </Container>
     </section>
   );

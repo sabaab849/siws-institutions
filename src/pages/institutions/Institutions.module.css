@@ -1,0 +1,111 @@
+.units {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* What the institution offers, in its own words */
+.highlights {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.highlightTitle {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+}
+
+.highlightText {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+/* Photographs from the institution's own site */
+.gallery {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+/* The frame crops the photograph, so it can grow a little on hover inside it */
+.photoFrame {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-placeholder);
+}
+
+.photoImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .photo:hover .photoImage {
+    transform: scale(1.04);
+  }
+}
+
+.photoCaption {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-body);
+}
+
+@media (min-width: 640px) {
+  .highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .units {
+    gap: var(--space-16);
+  }
+}
+
+@media (min-width: 1024px) {
+  .highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-6);
+  }
+}
+
+/* Links on to each institution in a part of the Society */
+.groupLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-10);
+}
