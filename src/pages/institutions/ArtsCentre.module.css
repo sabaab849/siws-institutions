@@ -178,8 +178,8 @@
 
 .prizeFeature {
   gap: var(--space-3);
-  background-color: var(--color-brand);
-  color: var(--color-on-brand-soft);
+  background-color: var(--color-tint-lavender);
+  color: var(--color-body-strong);
 }
 
 /* The competition, then the award it won, then the detail */
@@ -189,7 +189,7 @@
   line-height: var(--type-caption-lg-leading);
   letter-spacing: var(--type-caption-lg-tracking);
   text-transform: uppercase;
-  color: var(--color-on-brand-soft);
+  color: var(--color-brand);
 }
 
 .prizeAward {
@@ -199,7 +199,7 @@
   font-weight: var(--type-heading-md-weight);
   line-height: var(--type-heading-md-leading);
   letter-spacing: var(--type-heading-md-tracking);
-  color: var(--color-on-brand);
+  color: var(--color-heading);
 }
 
 .prizeList {
@@ -216,7 +216,7 @@
 }
 
 .prizeFeature .prizeTitle {
-  color: var(--color-on-brand);
+  color: var(--color-heading);
 }
 
 .prizeText {

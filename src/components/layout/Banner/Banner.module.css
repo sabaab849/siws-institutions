@@ -9,20 +9,23 @@
   padding-block: var(--section-y);
 }
 
-/* The Society's blue: the accent can hold small text on it (4.5:1) */
-.brand {
+/*
+ * The Society's band: a wash of its blue rather than a field of it, so the
+ * colour reads as an accent on the page instead of a block of ink. The label
+ * keeps the brand blue; the dash, rule and arcs keep the accent.
+ */
+.tint {
   --banner-accent: var(--color-accent);
-  --banner-label: var(--color-accent);
-  --banner-title: var(--color-on-brand);
-  --banner-lead: var(--color-on-brand-soft);
-  --banner-footnote: var(--color-on-brand-quote);
-  --focus-ring: var(--color-on-brand);
-  background-color: var(--color-brand);
-  color: var(--color-on-brand);
+  --banner-label: var(--color-brand);
+  --banner-title: var(--color-heading);
+  /* The wash lifts the page, so the text under it is a shade darker to keep 4.5:1 */
+  --banner-lead: var(--color-body-strong);
+  --banner-footnote: var(--color-body-strong);
+  background-color: var(--color-tint-lavender);
+  color: var(--color-body-strong);
 }
 
-/* The light band: the accent is kept for the graphics, where no text relies
-   on it — on this background it holds only 3:1. */
+/* The cream band, the same treatment on a warmer ground */
 .warm {
   --banner-accent: var(--color-accent);
   --banner-label: var(--color-brand);
@@ -89,8 +92,9 @@
   text-wrap: pretty;
 }
 
+/* The deeper accent: the bright one disappears into the wash at this size */
 .quote {
-  color: var(--banner-accent);
+  color: var(--color-accent-text);
 }
 
 .rule {

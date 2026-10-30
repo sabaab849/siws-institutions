@@ -5,9 +5,12 @@ import iyengar from '../assets/photos/people/iyengar.webp';
 import kashivishvanathan from '../assets/photos/people/kashivishvanathan.webp';
 import krishnan from '../assets/photos/people/krishnan.webp';
 import radhakrishnan from '../assets/photos/people/radhakrishnan.webp';
+import raghunathanSundaresan from '../assets/photos/people/raghunathan-sundaresan.webp';
+import rajan from '../assets/photos/people/rajan.webp';
 import ramachandran from '../assets/photos/people/ramachandran.webp';
 import rangaraj from '../assets/photos/people/rangaraj.webp';
 import sarma from '../assets/photos/people/sarma.webp';
+import shivkumarRamanathan from '../assets/photos/people/shivkumar-ramanathan.webp';
 import srinivasan from '../assets/photos/people/srinivasan.webp';
 import swamy from '../assets/photos/people/swamy.webp';
 import vasudevRao from '../assets/photos/people/vasudev-rao.webp';
@@ -55,12 +58,11 @@ export const trustees: Person[] = [
   { name: 'Shri V. Ramachandran', role: 'Trustee', photo: ramachandran },
   { name: 'Shri G. Vasudev Rao', role: 'Trustee', photo: vasudevRao },
   { name: 'Shri T.S. Kashivishvanathan', role: 'Trustee', photo: kashivishvanathan },
-  // No photograph published yet for these two; the card falls back to a monogram.
-  { name: 'Shri Raghunathan Sundaresan', role: 'Trustee' },
+  { name: 'Shri Raghunathan Sundaresan', role: 'Trustee', photo: raghunathanSundaresan },
   { name: 'Shri S. Srinivasan', role: 'Trustee', photo: srinivasan },
-  { name: 'Shri Shivkumar Ramanathan', role: 'Trustee' },
+  { name: 'Shri Shivkumar Ramanathan', role: 'Trustee', photo: shivkumarRamanathan },
 ];
 
 export const coOptedTrustees: Person[] = [
-  { name: 'Shri S. Rajan', role: 'Co-opted Member' },
+  { name: 'Shri S. Rajan', role: 'Co-opted Member', photo: rajan },
 ];

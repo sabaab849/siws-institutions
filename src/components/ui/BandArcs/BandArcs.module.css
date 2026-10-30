@@ -8,7 +8,7 @@
   bottom: -2.5rem;
   width: 6.5rem;
   height: 13rem;
-  opacity: 0.35;
+  opacity: 0.3;
   pointer-events: none;
 }
 
@@ -27,23 +27,14 @@
   stroke: none;
 }
 
-/* The accent reads stronger on a light band, so the arcs are held back */
-.warm {
-  opacity: 0.3;
-}
-
 @media (min-width: 640px) {
   .arcs {
     top: 50%;
     bottom: auto;
     width: 11rem;
     height: 22rem;
-    opacity: 1;
-    transform: translateY(-50%);
-  }
-
-  .warm {
     opacity: 0.55;
+    transform: translateY(-50%);
   }
 }
 

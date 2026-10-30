@@ -47,6 +47,7 @@ export const primaryNav: NavItem[] = [
       { label: 'Junior College', to: '/institutions/junior-college' },
       { label: 'SIWS College (Autonomous)', to: '/institutions/degree-college' },
       { label: 'Arts, Fine Arts & Philosophy Centre', to: '/institutions/arts-centre' },
+      { label: 'Sports', to: '/institutions/sports' },
     ],
   },
   {

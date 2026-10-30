@@ -30,7 +30,8 @@ export function PageSection({
   className,
 }: PageSectionProps) {
   const titleId = useId();
-  const inverse = tone === 'brand';
+  // The brand band is a pale wash now, so its text keeps the usual colours
+  const inverse = false;
 
   return (
     <section

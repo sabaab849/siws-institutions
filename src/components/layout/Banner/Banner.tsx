@@ -7,8 +7,8 @@ import styles from './Banner.module.css';
 type BannerProps = {
   /** Anchor for links into the band, e.g. `/about/vision-mission-values#vision`. */
   id?: string;
-  /** `brand`: the Society's blue. `warm`: the light band. */
-  tone?: 'brand' | 'warm';
+  /** `tint`: a wash of the Society's blue. `warm`: the cream band. */
+  tone?: 'tint' | 'warm';
   /** The label at the head of the band, beside the accent dash. */
   eyebrow: string;
   title: ReactNode;
@@ -39,7 +39,7 @@ type BannerProps = {
  */
 export function Banner({
   id,
-  tone = 'brand',
+  tone = 'tint',
   eyebrow,
   title,
   size = 'heading',
@@ -58,7 +58,7 @@ export function Banner({
       className={cx(styles.banner, styles[tone], className)}
       aria-labelledby={titleId}
     >
-      <BandArcs tone={tone} />
+      <BandArcs />
 
       <Container className={styles.inner}>
         <p className={styles.eyebrow}>

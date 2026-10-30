@@ -2,8 +2,6 @@ import { cx } from '../../../utils/cx';
 import styles from './BandArcs.module.css';
 
 type BandArcsProps = {
-  /** `warm`: the accent reads stronger on a light band, so it is held back. */
-  tone?: 'brand' | 'warm';
   className?: string;
 };
 
@@ -11,9 +9,9 @@ type BandArcsProps = {
  * The accent arcs that mark a full-width band: they open out of its right
  * edge, as knowledge passed on. Decorative, so they carry no label.
  */
-export function BandArcs({ tone = 'brand', className }: BandArcsProps) {
+export function BandArcs({ className }: BandArcsProps) {
   return (
-    <span className={cx(styles.arcs, styles[tone], className)} aria-hidden="true">
+    <span className={cx(styles.arcs, className)} aria-hidden="true">
       <svg viewBox="0 0 200 400" focusable="false">
         <path d="M200 130A70 70 0 0 0 200 270" opacity="0.55" />
         <path d="M200 80A120 120 0 0 0 200 320" opacity="0.4" />

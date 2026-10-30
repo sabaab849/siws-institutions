@@ -2,14 +2,13 @@
  * The scholarship figures, read as one line of four. The numerals carry the
  * section and whitespace alone groups them: no rules, cards or separators.
  */
-/* The figures band: the Society's blue, the accent carried by the arcs */
+/* The figures band: a wash of the Society's blue, the accent in the arcs */
 .figuresBand {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   padding-block: var(--section-y);
-  background-color: var(--color-brand);
-  color: var(--color-on-brand);
+  background-color: var(--color-tint-lavender);
 }
 
 /*
@@ -99,15 +98,15 @@
   }
 }
 
-/* On the blue band the numerals and their labels change coat */
-.figuresBand .figureValue {
-  position: relative;
-  color: var(--color-on-brand);
-}
-
+/* The numerals stay navy on the wash; they sit above the arcs */
+.figuresBand .figureValue,
 .figuresBand .figureLabel {
   position: relative;
-  color: var(--color-on-brand-soft);
+}
+
+/* A shade darker than on white, so the label keeps 4.5:1 on the wash */
+.figuresBand .figureLabel {
+  color: var(--color-body-strong);
 }
 
 .figureLabel {

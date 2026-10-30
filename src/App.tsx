@@ -11,6 +11,7 @@ import { Chairman } from './pages/governance/Chairman';
 import { HowGoverned } from './pages/governance/HowGoverned';
 import { InstitutionsIndex } from './pages/institutions/InstitutionsIndex';
 import { ArtsCentre } from './pages/institutions/ArtsCentre';
+import { Sports } from './pages/institutions/Sports';
 import { InstitutionPage } from './pages/institutions/InstitutionPage';
 import { ActivitiesIndex } from './pages/activities/ActivitiesIndex';
 import { EventCategoryPage } from './pages/activities/EventCategoryPage';
@@ -53,6 +54,7 @@ export function App() {
         <Route path="institutions">
           <Route index element={<InstitutionsIndex />} />
           <Route path="arts-centre" element={<ArtsCentre />} />
+          <Route path="sports" element={<Sports />} />
           <Route path=":slug" element={<InstitutionPage />} />
         </Route>
 
